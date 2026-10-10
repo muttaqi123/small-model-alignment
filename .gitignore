@@ -1,2 +1,15 @@
 __pycache__/
 *.py[cod]
+*.egg-info/
+.pytest_cache/
+.env
+# model weights and large intermediate files stay on Kaggle
+outputs/**/best/
+outputs/**/final/
+outputs/**/adapter/
+outputs/**/trainer/
+outputs/data/*.jsonl
+*.safetensors
+*.bin
+*.zip
+kaggle/**/*.json.tmp
