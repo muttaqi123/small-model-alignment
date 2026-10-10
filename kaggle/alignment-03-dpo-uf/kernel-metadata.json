@@ -1,0 +1,18 @@
+{
+  "id": "muhammadmuttaqi123/alignment-03-dpo-uf",
+  "title": "alignment-03-dpo-uf",
+  "code_file": "alignment-03-dpo-uf.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [
+    "muhammadmuttaqi123/alignment-01-sft"
+  ],
+  "model_sources": []
+}
