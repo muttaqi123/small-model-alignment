@@ -1,0 +1,19 @@
+{
+  "model_path": "outputs/sft/best",
+  "adapter_path": null,
+  "eval_path": "eval_sets/alpaca_eval_300_seed42.json",
+  "generator": "qwen2.5-0.5b-sft",
+  "n": 3,
+  "prompt_format": "chatml",
+  "decoding": {
+    "do_sample": false,
+    "temperature": null,
+    "top_p": null,
+    "max_new_tokens": 512,
+    "repetition_penalty": 1.1,
+    "no_repeat_ngram_size": 0,
+    "dtype": "fp16"
+  },
+  "unfinished": 0,
+  "seconds": 6.0
+}

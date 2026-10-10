@@ -1,0 +1,29 @@
+[
+  {
+    "id": "alpaca-eval-654",
+    "instruction": "Create a short, concise summary of the paper based on its abstract.\n\nFew-shot learning (FSL) is one of the key future steps in machine learning and raises a lot of attention. In this paper, we focus on the FSL problem of dialogue understanding, which contains two closely related tasks: intent detection and slot filling. Dialogue understanding has been proven to benefit a lot from jointly learning the two sub-tasks. However, such joint learning becomes challenging in the few-shot scenarios: on the one hand, the sparsity of samples greatly magnifies the difficulty of modeling the connection between the two tasks; on the other hand, how to jointly learn multiple tasks in the few-shot setting is still less investigated. In response to this, we introduce FewJoint, the first FSL benchmark for joint dialogue understanding. FewJoint provides a new corpus with 59 different dialogue domains from real industrial API and a code platform to ease FSL experiment set-up, which are expected to advance the research of this field. Further, we find that insufficient performance of the few-shot setting often leads to noisy sharing between two sub-task and disturbs joint learning. To tackle this, we guide slot with explicit intent information and propose a novel trust gating mechanism that blocks low-confidence intent information to ensure high quality sharing. Besides, we introduce a Reptile-based meta-learning strategy to achieve better generalization in unseen few-shot domains. In the experiments, the proposed method brings significant improvements on two datasets and achieve new state-of-the-art performance.",
+    "output": "The paper presents a new FSL benchmark called FewJoint, which includes 59 different dialogue domains from real industrial APIs. The paper also introduces a few-shot learning technique called FewJoint to address the challenge of joint learning in the few-shot scenario. The paper finds that insufficient performance in the few-shot setting can lead to noisy sharing between two sub-tasks, and proposes a novel trust gating mechanism to ensure high-quality sharing. The paper also introduces a Reptile-based meta-learning strategy to improve generalization in unseen few-shot domains. Overall, the paper advances the research of FSL by providing a new corpus and proposing several techniques to overcome the challenges of joint learning in the few-shot scenario.",
+    "generator": "qwen2.5-0.5b-sft",
+    "dataset": "alpaca_eval",
+    "finished": true,
+    "source_dataset": "selfinstruct"
+  },
+  {
+    "id": "alpaca-eval-114",
+    "instruction": "Is there a meaning for Christmas wreaths?",
+    "output": "Yes, there is a meaning behind the Christmas wreath. It represents the idea of renewal and rebirth, as well as the hope that things will be better in the future. The wreath can also symbolize the arrival of Christ and his message of love and compassion. Additionally, it can represent the idea of unity and community, as many people gather together to celebrate this holiday season. Overall, the Christmas wreath holds significant cultural and spiritual significance in many communities around the world.",
+    "generator": "qwen2.5-0.5b-sft",
+    "dataset": "alpaca_eval",
+    "finished": true,
+    "source_dataset": "helpful_base"
+  },
+  {
+    "id": "alpaca-eval-025",
+    "instruction": "What are some species of bears that are now extinct?",
+    "output": "There are several species of bears that have become extinct, including:\n\n1. Black Bear (Ursus americanus)\n2. Polar Bear (Ursus maritimus)\n3. Grizzly Bear (Ursus horribilis)\n4. Mountain Gorilla (Gorilla beringei)\n5. Sumatran Elephant (Elephas maximus sumatrae)\n6. Bornean Orangutan (Panulid apes)\n7. Philippine Eagle (Peregrine falcon)",
+    "generator": "qwen2.5-0.5b-sft",
+    "dataset": "alpaca_eval",
+    "finished": true,
+    "source_dataset": "helpful_base"
+  }
+]

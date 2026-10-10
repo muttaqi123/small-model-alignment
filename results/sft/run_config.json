@@ -1,0 +1,43 @@
+{
+  "model_name": "Qwen/Qwen2.5-0.5B",
+  "train_path": "outputs/data/sft_train.jsonl",
+  "val_path": "outputs/data/sft_val.jsonl",
+  "output_dir": "outputs/sft",
+  "max_length": 512,
+  "per_device_batch_size": 2,
+  "grad_accum": 16,
+  "lr": 2e-05,
+  "warmup_ratio": 0.03,
+  "min_lr_ratio": 0.0,
+  "weight_decay": 0.1,
+  "adam_beta2": 0.999,
+  "max_grad_norm": 1.0,
+  "epochs": 1,
+  "eval_every": 50,
+  "eval_batch_size": 4,
+  "max_train_examples": null,
+  "max_val_examples": null,
+  "seed": 42,
+  "device": "cuda:0",
+  "no_fp16": false,
+  "gradient_checkpointing": false,
+  "no_save": false,
+  "n_train": 30000,
+  "n_val": 1000,
+  "effective_batch_size": 32,
+  "steps_per_epoch": 938,
+  "total_steps": 938,
+  "warmup_steps": 28,
+  "loss_reduction": "token-level mean over response tokens in each accumulation window",
+  "precision": "fp32 weights + fp16 autocast + GradScaler",
+  "environment": {
+    "torch": "2.11.0+cu128",
+    "transformers": "4.57.6",
+    "cuda_available": true,
+    "gpus": [
+      "Tesla T4",
+      "Tesla T4"
+    ],
+    "datasets": "4.8.5"
+  }
+}
