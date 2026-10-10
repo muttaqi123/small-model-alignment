@@ -1,0 +1,80 @@
+{
+  "n": 40,
+  "wins": 15,
+  "losses": 22,
+  "ties": 3,
+  "unknown": 0,
+  "failures": 0,
+  "win_rate_excluding_ties": 0.40540540540540543,
+  "win_rate_ties_as_half": 0.4125,
+  "loss_rate_ties_as_half": 0.5875,
+  "unknown_rate": 0.0,
+  "failure_rate": 0.0,
+  "target_model": "lora_r16_all_lr5e-5",
+  "baseline_model": "base",
+  "judge_models": [
+    "google/gemini-3.6-flash"
+  ],
+  "total_attempts": 40,
+  "judge_picked_A_fraction": 0.6486486486486487,
+  "by_category": {
+    "coding": {
+      "n": 10,
+      "wins": 4,
+      "losses": 6,
+      "ties": 0,
+      "unknown": 0,
+      "failures": 0,
+      "win_rate_excluding_ties": 0.4,
+      "win_rate_ties_as_half": 0.4,
+      "loss_rate_ties_as_half": 0.6,
+      "unknown_rate": 0.0,
+      "failure_rate": 0.0
+    },
+    "cooking": {
+      "n": 10,
+      "wins": 4,
+      "losses": 5,
+      "ties": 1,
+      "unknown": 0,
+      "failures": 0,
+      "win_rate_excluding_ties": 0.4444444444444444,
+      "win_rate_ties_as_half": 0.45,
+      "loss_rate_ties_as_half": 0.55,
+      "unknown_rate": 0.0,
+      "failure_rate": 0.0
+    },
+    "general_help": {
+      "n": 10,
+      "wins": 2,
+      "losses": 8,
+      "ties": 0,
+      "unknown": 0,
+      "failures": 0,
+      "win_rate_excluding_ties": 0.2,
+      "win_rate_ties_as_half": 0.2,
+      "loss_rate_ties_as_half": 0.8,
+      "unknown_rate": 0.0,
+      "failure_rate": 0.0
+    },
+    "safety_sensitive": {
+      "n": 10,
+      "wins": 5,
+      "losses": 3,
+      "ties": 2,
+      "unknown": 0,
+      "failures": 0,
+      "win_rate_excluding_ties": 0.625,
+      "win_rate_ties_as_half": 0.6,
+      "loss_rate_ties_as_half": 0.4,
+      "unknown_rate": 0.0,
+      "failure_rate": 0.0
+    }
+  },
+  "pairs_path": "/kaggle/input/datasets/muhammadmuttaqi123/alignment-judge-inputs/pairs/persona_quality_lora_r16_all_lr5e-5_vs_base_pairs.jsonl",
+  "settings": {
+    "batch_size": 5,
+    "sleep_seconds": 5.0,
+    "max_retries": 3
+  }
+}
