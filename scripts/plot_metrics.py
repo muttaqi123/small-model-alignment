@@ -103,14 +103,16 @@ def plot_lora(lora_dir, out_dir):
     if not runs:
         return
     fig, axes = plt.subplots(1, 3, figsize=(15, 4))
-    for run in runs:
+    palette = plt.get_cmap("tab10")
+    for index, run in enumerate(runs):
+        color = palette(index)
         records = read_jsonl(run / "metrics.jsonl")
         evals = [r for r in records if "eval_loss" in r]
         train = [r for r in records if "loss" in r and "eval_loss" not in r]
-        axes[0].plot([r["step"] for r in train], [r["loss"] for r in train], lw=1, alpha=0.8, label=f"{run.name} train")
-        axes[0].plot([r["step"] for r in evals], [r["eval_loss"] for r in evals], "o--", label=f"{run.name} held-out")
-        axes[1].plot([r["step"] for r in evals], [r.get("eval_rewards/accuracies") for r in evals], "o-", label=run.name)
-        axes[2].plot([r["step"] for r in evals], [r.get("eval_rewards/margins") for r in evals], "o-", label=run.name)
+        axes[0].plot([r["step"] for r in train], [r["loss"] for r in train], lw=1, alpha=0.5, color=color, label=f"{run.name} train")
+        axes[0].plot([r["step"] for r in evals], [r["eval_loss"] for r in evals], "o--", color=color, label=f"{run.name} held-out")
+        axes[1].plot([r["step"] for r in evals], [r.get("eval_rewards/accuracies") for r in evals], "o-", color=color, label=run.name)
+        axes[2].plot([r["step"] for r in evals], [r.get("eval_rewards/margins") for r in evals], "o-", color=color, label=run.name)
     for ax, ylabel in zip(axes, ("DPO loss", "held-out reward accuracy", "held-out reward margin")):
         ax.set_xlabel("optimizer step (effective batch 8)")
         ax.set_ylabel(ylabel)
