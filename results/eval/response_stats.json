@@ -1,0 +1,494 @@
+{
+  "hh_base": {
+    "n": 300,
+    "mean_words": 237.63666666666666,
+    "median_words": 223,
+    "unfinished_rate": 0.34,
+    "refusal_marker_rate": 0.043333333333333335,
+    "by_category": {
+      "benign_helpfulness": {
+        "n": 30,
+        "mean_words": 177.13333333333333,
+        "median_words": 159,
+        "unfinished_rate": 0.13333333333333333,
+        "refusal_marker_rate": 0.0
+      },
+      "calibration_and_uncertainty": {
+        "n": 30,
+        "mean_words": 218.5,
+        "median_words": 232,
+        "unfinished_rate": 0.5,
+        "refusal_marker_rate": 0.0
+      },
+      "cyber_abuse": {
+        "n": 30,
+        "mean_words": 259.0,
+        "median_words": 256,
+        "unfinished_rate": 0.5,
+        "refusal_marker_rate": 0.0
+      },
+      "harmful_instructions": {
+        "n": 30,
+        "mean_words": 293.8666666666667,
+        "median_words": 272,
+        "unfinished_rate": 0.4,
+        "refusal_marker_rate": 0.0
+      },
+      "hate_or_harassment": {
+        "n": 30,
+        "mean_words": 281.3333333333333,
+        "median_words": 317,
+        "unfinished_rate": 0.7333333333333333,
+        "refusal_marker_rate": 0.03333333333333333
+      },
+      "legal_financial_safety": {
+        "n": 30,
+        "mean_words": 326.93333333333334,
+        "median_words": 346,
+        "unfinished_rate": 0.4666666666666667,
+        "refusal_marker_rate": 0.1
+      },
+      "medical_safety": {
+        "n": 30,
+        "mean_words": 231.0,
+        "median_words": 230,
+        "unfinished_rate": 0.3333333333333333,
+        "refusal_marker_rate": 0.0
+      },
+      "privacy_and_doxxing": {
+        "n": 30,
+        "mean_words": 237.36666666666667,
+        "median_words": 226,
+        "unfinished_rate": 0.16666666666666666,
+        "refusal_marker_rate": 0.23333333333333334
+      },
+      "safe_transformation": {
+        "n": 30,
+        "mean_words": 182.9,
+        "median_words": 180,
+        "unfinished_rate": 0.16666666666666666,
+        "refusal_marker_rate": 0.06666666666666667
+      },
+      "self_harm_support": {
+        "n": 30,
+        "mean_words": 168.33333333333334,
+        "median_words": 161,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      }
+    }
+  },
+  "hh_sft": {
+    "n": 300,
+    "mean_words": 143.63,
+    "median_words": 149,
+    "unfinished_rate": 0.01,
+    "refusal_marker_rate": 0.04,
+    "by_category": {
+      "benign_helpfulness": {
+        "n": 30,
+        "mean_words": 127.53333333333333,
+        "median_words": 123,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      },
+      "calibration_and_uncertainty": {
+        "n": 30,
+        "mean_words": 82.2,
+        "median_words": 74,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.26666666666666666
+      },
+      "cyber_abuse": {
+        "n": 30,
+        "mean_words": 178.7,
+        "median_words": 166,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      },
+      "harmful_instructions": {
+        "n": 30,
+        "mean_words": 204.06666666666666,
+        "median_words": 220,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      },
+      "hate_or_harassment": {
+        "n": 30,
+        "mean_words": 161.4,
+        "median_words": 151,
+        "unfinished_rate": 0.1,
+        "refusal_marker_rate": 0.0
+      },
+      "legal_financial_safety": {
+        "n": 30,
+        "mean_words": 185.66666666666666,
+        "median_words": 219,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      },
+      "medical_safety": {
+        "n": 30,
+        "mean_words": 144.33333333333334,
+        "median_words": 185,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      },
+      "privacy_and_doxxing": {
+        "n": 30,
+        "mean_words": 164.33333333333334,
+        "median_words": 170,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      },
+      "safe_transformation": {
+        "n": 30,
+        "mean_words": 85.46666666666667,
+        "median_words": 67,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.13333333333333333
+      },
+      "self_harm_support": {
+        "n": 30,
+        "mean_words": 102.6,
+        "median_words": 88,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      }
+    }
+  },
+  "hh_dpo_hh": {
+    "n": 300,
+    "mean_words": 118.60666666666667,
+    "median_words": 118,
+    "unfinished_rate": 0.016666666666666666,
+    "refusal_marker_rate": 0.023333333333333334,
+    "by_category": {
+      "benign_helpfulness": {
+        "n": 30,
+        "mean_words": 109.23333333333333,
+        "median_words": 111,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      },
+      "calibration_and_uncertainty": {
+        "n": 30,
+        "mean_words": 60.3,
+        "median_words": 58,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.06666666666666667
+      },
+      "cyber_abuse": {
+        "n": 30,
+        "mean_words": 164.66666666666666,
+        "median_words": 158,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      },
+      "harmful_instructions": {
+        "n": 30,
+        "mean_words": 170.96666666666667,
+        "median_words": 175,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      },
+      "hate_or_harassment": {
+        "n": 30,
+        "mean_words": 119.83333333333333,
+        "median_words": 103,
+        "unfinished_rate": 0.13333333333333333,
+        "refusal_marker_rate": 0.03333333333333333
+      },
+      "legal_financial_safety": {
+        "n": 30,
+        "mean_words": 160.73333333333332,
+        "median_words": 170,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      },
+      "medical_safety": {
+        "n": 30,
+        "mean_words": 99.03333333333333,
+        "median_words": 85,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      },
+      "privacy_and_doxxing": {
+        "n": 30,
+        "mean_words": 140.06666666666666,
+        "median_words": 139,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      },
+      "safe_transformation": {
+        "n": 30,
+        "mean_words": 77.0,
+        "median_words": 69,
+        "unfinished_rate": 0.03333333333333333,
+        "refusal_marker_rate": 0.13333333333333333
+      },
+      "self_harm_support": {
+        "n": 30,
+        "mean_words": 84.23333333333333,
+        "median_words": 83,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      }
+    }
+  },
+  "hh_dpo_uf": {
+    "n": 300,
+    "mean_words": 195.05666666666667,
+    "median_words": 206,
+    "unfinished_rate": 0.013333333333333334,
+    "refusal_marker_rate": 0.03666666666666667,
+    "by_category": {
+      "benign_helpfulness": {
+        "n": 30,
+        "mean_words": 186.26666666666668,
+        "median_words": 186,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      },
+      "calibration_and_uncertainty": {
+        "n": 30,
+        "mean_words": 122.8,
+        "median_words": 99,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.03333333333333333
+      },
+      "cyber_abuse": {
+        "n": 30,
+        "mean_words": 234.16666666666666,
+        "median_words": 223,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      },
+      "harmful_instructions": {
+        "n": 30,
+        "mean_words": 277.23333333333335,
+        "median_words": 291,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      },
+      "hate_or_harassment": {
+        "n": 30,
+        "mean_words": 210.26666666666668,
+        "median_words": 229,
+        "unfinished_rate": 0.13333333333333333,
+        "refusal_marker_rate": 0.0
+      },
+      "legal_financial_safety": {
+        "n": 30,
+        "mean_words": 235.16666666666666,
+        "median_words": 271,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      },
+      "medical_safety": {
+        "n": 30,
+        "mean_words": 178.76666666666668,
+        "median_words": 211,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      },
+      "privacy_and_doxxing": {
+        "n": 30,
+        "mean_words": 228.0,
+        "median_words": 223,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.0
+      },
+      "safe_transformation": {
+        "n": 30,
+        "mean_words": 108.56666666666666,
+        "median_words": 102,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.13333333333333333
+      },
+      "self_harm_support": {
+        "n": 30,
+        "mean_words": 169.33333333333334,
+        "median_words": 198,
+        "unfinished_rate": 0.0,
+        "refusal_marker_rate": 0.2
+      }
+    }
+  },
+  "alpaca_base": {
+    "n": 300,
+    "mean_words": 269.1333333333333,
+    "median_words": 289,
+    "unfinished_rate": 0.5166666666666667,
+    "refusal_marker_rate": 0.02666666666666667
+  },
+  "alpaca_sft": {
+    "n": 300,
+    "mean_words": 142.22666666666666,
+    "median_words": 144,
+    "unfinished_rate": 0.04666666666666667,
+    "refusal_marker_rate": 0.0033333333333333335
+  },
+  "alpaca_dpo_hh": {
+    "n": 300,
+    "mean_words": 117.79333333333334,
+    "median_words": 112,
+    "unfinished_rate": 0.023333333333333334,
+    "refusal_marker_rate": 0.01
+  },
+  "alpaca_dpo_uf": {
+    "n": 300,
+    "mean_words": 190.67333333333335,
+    "median_words": 194,
+    "unfinished_rate": 0.06333333333333334,
+    "refusal_marker_rate": 0.0
+  },
+  "persona_base": {
+    "n": 40,
+    "mean_words": 135.625,
+    "median_words": 153,
+    "unfinished_rate": 0.4,
+    "refusal_marker_rate": 0.1,
+    "by_category": {
+      "coding": {
+        "n": 10,
+        "mean_words": 139.9,
+        "median_words": 141,
+        "unfinished_rate": 0.6,
+        "refusal_marker_rate": 0.0
+      },
+      "cooking": {
+        "n": 10,
+        "mean_words": 126.0,
+        "median_words": 169,
+        "unfinished_rate": 0.2,
+        "refusal_marker_rate": 0.3
+      },
+      "general_help": {
+        "n": 10,
+        "mean_words": 134.1,
+        "median_words": 166,
+        "unfinished_rate": 0.5,
+        "refusal_marker_rate": 0.0
+      },
+      "safety_sensitive": {
+        "n": 10,
+        "mean_words": 142.5,
+        "median_words": 176,
+        "unfinished_rate": 0.3,
+        "refusal_marker_rate": 0.1
+      }
+    }
+  },
+  "persona_lora_r8_attn_lr5e-5": {
+    "n": 40,
+    "mean_words": 138.0,
+    "median_words": 164,
+    "unfinished_rate": 0.5,
+    "refusal_marker_rate": 0.1,
+    "by_category": {
+      "coding": {
+        "n": 10,
+        "mean_words": 140.1,
+        "median_words": 145,
+        "unfinished_rate": 0.5,
+        "refusal_marker_rate": 0.0
+      },
+      "cooking": {
+        "n": 10,
+        "mean_words": 150.3,
+        "median_words": 191,
+        "unfinished_rate": 0.6,
+        "refusal_marker_rate": 0.2
+      },
+      "general_help": {
+        "n": 10,
+        "mean_words": 156.9,
+        "median_words": 181,
+        "unfinished_rate": 0.6,
+        "refusal_marker_rate": 0.1
+      },
+      "safety_sensitive": {
+        "n": 10,
+        "mean_words": 104.7,
+        "median_words": 81,
+        "unfinished_rate": 0.3,
+        "refusal_marker_rate": 0.1
+      }
+    }
+  },
+  "persona_lora_r16_all_lr5e-5": {
+    "n": 40,
+    "mean_words": 130.7,
+    "median_words": 149,
+    "unfinished_rate": 0.425,
+    "refusal_marker_rate": 0.025,
+    "by_category": {
+      "coding": {
+        "n": 10,
+        "mean_words": 116.5,
+        "median_words": 115,
+        "unfinished_rate": 0.4,
+        "refusal_marker_rate": 0.1
+      },
+      "cooking": {
+        "n": 10,
+        "mean_words": 112.2,
+        "median_words": 101,
+        "unfinished_rate": 0.4,
+        "refusal_marker_rate": 0.0
+      },
+      "general_help": {
+        "n": 10,
+        "mean_words": 162.8,
+        "median_words": 183,
+        "unfinished_rate": 0.6,
+        "refusal_marker_rate": 0.0
+      },
+      "safety_sensitive": {
+        "n": 10,
+        "mean_words": 131.3,
+        "median_words": 167,
+        "unfinished_rate": 0.3,
+        "refusal_marker_rate": 0.0
+      }
+    }
+  },
+  "persona_lora_r16_all_lr2e-4": {
+    "n": 40,
+    "mean_words": 130.0,
+    "median_words": 144,
+    "unfinished_rate": 0.55,
+    "refusal_marker_rate": 0.0,
+    "by_category": {
+      "coding": {
+        "n": 10,
+        "mean_words": 134.4,
+        "median_words": 128,
+        "unfinished_rate": 0.6,
+        "refusal_marker_rate": 0.0
+      },
+      "cooking": {
+        "n": 10,
+        "mean_words": 104.2,
+        "median_words": 101,
+        "unfinished_rate": 0.3,
+        "refusal_marker_rate": 0.0
+      },
+      "general_help": {
+        "n": 10,
+        "mean_words": 141.4,
+        "median_words": 179,
+        "unfinished_rate": 0.5,
+        "refusal_marker_rate": 0.0
+      },
+      "safety_sensitive": {
+        "n": 10,
+        "mean_words": 140.0,
+        "median_words": 152,
+        "unfinished_rate": 0.8,
+        "refusal_marker_rate": 0.0
+      }
+    }
+  }
+}

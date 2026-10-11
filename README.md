@@ -29,12 +29,15 @@ scripts/
   prepare_data.py            build outputs/data/*.jsonl + data_manifest.json
   make_alpaca_subset.py      eval_sets/alpaca_eval_300_seed42.json
   train_lora_dpo.py          TRL DPOTrainer + LoRA persona runs
-  build_pairs.py             blinded, order-randomized DPO-vs-SFT pair files
+  build_pairs.py             blinded, order-randomized DPO-vs-SFT pair files (+ swapped-order copies)
   judge_pairwise_kaggle.py   batched, retrying, resumable judge + summaries
+  summarize_results.py       win/loss/tie tables, order-debiased results, judge agreement
+  response_stats.py          length / truncation / refusal-phrase statistics
   plot_metrics.py            training plots
 kaggle/
   build_notebooks.py         generates the Kaggle notebooks for every stage
-  judge_task.py              Kaggle Benchmarks task that runs the judge
+  judge_task.py              Kaggle Benchmarks task that runs the judge (judge_task_extra.py: second task)
+report/                      build_report.py + text.py -> report.html / report.pdf
 eval_sets/                   fixed evaluation prompts (HH synthetic 300, AlpacaEval 300 seed 42, persona 40)
 results/                     metrics, generations, pair files, judgments, plots copied back from Kaggle
 tests/                       public smoke tests + stricter edge-case and judge tests
