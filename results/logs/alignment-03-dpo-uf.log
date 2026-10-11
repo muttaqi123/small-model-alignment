@@ -1,0 +1,263 @@
+[{"stream_name":"stderr","time":7.380001435,"data":"/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\n"}
+,{"stream_name":"stderr","time":7.380045649,"data":"  _validate(nbdict, ref, version, version_minor, relax_add_props)\n"}
+,{"stream_name":"stderr","time":8.348480941,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.348518438,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.34852239,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.348525078,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":8.994944894,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.994973762,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.994978561,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.994986986,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":11.523923683,"data":"5713785 Add README and Kaggle Benchmarks judge task\n"}
+,{"stream_name":"stdout","time":11.523952547,"data":"\n"}
+,{"stream_name":"stdout","time":11.533094213,"data":"$ nvidia-smi\n"}
+,{"stream_name":"stdout","time":11.566437508,"data":"Sat Oct 10 16:13:02 2026       \n"}
+,{"stream_name":"stdout","time":11.567520142,"data":"+-----------------------------------------------------------------------------------------+\n"}
+,{"stream_name":"stdout","time":11.567773728,"data":"| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |\n"}
+,{"stream_name":"stdout","time":11.569207161,"data":"+-----------------------------------------+------------------------+----------------------+\n"}
+,{"stream_name":"stdout","time":11.570193249999999,"data":"| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n"}
+,{"stream_name":"stdout","time":11.571014404,"data":"| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n"}
+,{"stream_name":"stdout","time":11.571913263999999,"data":"|                                         |                        |               MIG M. |\n"}
+,{"stream_name":"stdout","time":11.572798045999999,"data":"|=========================================+========================+======================|\n"}
+,{"stream_name":"stdout","time":11.597078367,"data":"|   0  Tesla T4                       Off |   00000000:00:04.0 Off |                    0 |\n"}
+,{"stream_name":"stdout","time":11.598030556,"data":"| N/A   34C    P8              9W /   70W |       0MiB /  15360MiB |      0%      Default |\n"}
+,{"stream_name":"stdout","time":11.598847394,"data":"|                                         |                        |                  N/A |\n"}
+,{"stream_name":"stdout","time":11.599718163,"data":"+-----------------------------------------+------------------------+----------------------+\n"}
+,{"stream_name":"stdout","time":11.600765476,"data":"|   1  Tesla T4                       Off |   00000000:00:05.0 Off |                    0 |\n"}
+,{"stream_name":"stdout","time":11.601855609,"data":"| N/A   34C    P8              9W /   70W |       0MiB /  15360MiB |      0%      Default |\n"}
+,{"stream_name":"stdout","time":11.602882276999999,"data":"|                                         |                        |                  N/A |\n"}
+,{"stream_name":"stdout","time":11.603890801,"data":"+-----------------------------------------+------------------------+----------------------+\n"}
+,{"stream_name":"stdout","time":11.605019861,"data":"\n"}
+,{"stream_name":"stdout","time":11.606158377,"data":"+-----------------------------------------------------------------------------------------+\n"}
+,{"stream_name":"stdout","time":11.607169335,"data":"| Processes:                                                                              |\n"}
+,{"stream_name":"stdout","time":11.608035951,"data":"|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n"}
+,{"stream_name":"stdout","time":11.608902779,"data":"|        ID   ID                                                               Usage      |\n"}
+,{"stream_name":"stdout","time":11.609869769,"data":"|=========================================================================================|\n"}
+,{"stream_name":"stdout","time":11.610718212,"data":"|  No running processes found                                                             |\n"}
+,{"stream_name":"stdout","time":11.611519491,"data":"+-----------------------------------------------------------------------------------------+\n"}
+,{"stream_name":"stdout","time":11.930795769,"data":"$ python -m pip uninstall -y -q torchao || true\n"}
+,{"stream_name":"stdout","time":13.854888277,"data":"$ python -m pip install -q \"transformers\u003e=4.43.0,\u003c5\" \"datasets\u003e=2.18,\u003c5\" huggingface_hub accelerate tqdm pyyaml sentencepiece safetensors pytest matplotlib\n"}
+,{"stream_name":"stdout","time":15.733301869,"data":"     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.0/44.0 kB 1.2 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":17.270543481,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.0/12.0 MB 91.4 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":17.315436606,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 566.4/566.4 kB 19.6 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":17.377926813,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 72.5 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":32.550994086,"data":"ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\n"}
+,{"stream_name":"stdout","time":32.551762328,"data":"gradio 6.26.0 requires huggingface-hub\u003c2.0,\u003e=1.16.0, but you have huggingface-hub 0.36.2 which is incompatible.\n"}
+,{"stream_name":"stdout","time":32.552485931,"data":"diffusers 0.40.0 requires huggingface-hub\u003c2.0,\u003e=1.23.0, but you have huggingface-hub 0.36.2 which is incompatible.\n"}
+,{"stream_name":"stdout","time":32.657576326,"data":"$ python -m pip install -q -e . --no-deps\n"}
+,{"stream_name":"stdout","time":39.361520574,"data":"$ python -c \"import torch, transformers, datasets; print('torch', torch.__version__, '| transformers', transformers.__version__, '| datasets', datasets.__version__, '| cuda', torch.version.cuda, '| gpus', torch.cuda.device_count())\"\n"}
+,{"stream_name":"stdout","time":53.963329216,"data":"torch 2.11.0+cu128 | transformers 4.57.6 | datasets 4.8.5 | cuda 12.8 | gpus 2\n"}
+,{"stream_name":"stdout","time":57.9485115,"data":"$ python -m pytest -q tests/\n"}
+,{"stream_name":"stdout","time":90.204706635,"data":"..........................                                               [100%]\n"}
+,{"stream_name":"stdout","time":90.204791271,"data":"=============================== warnings summary ===============================\n"}
+,{"stream_name":"stdout","time":90.205726878,"data":"tests/test_adapter_edge_cases.py::test_real_transformer_scores_are_padding_invariant\n"}
+,{"stream_name":"stdout","time":90.206799815,"data":"  /usr/local/lib/python3.13/dist-packages/matplotlib/_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'\n"}
+,{"stream_name":"stdout","time":90.20792827,"data":"    prop = Group((name + Suppress(\"=\") + comma_separated(value)) | oneOf(_CONSTANTS))\n"}
+,{"stream_name":"stdout","time":90.208782693,"data":"\n"}
+,{"stream_name":"stdout","time":90.209773609,"data":"tests/test_adapter_edge_cases.py::test_real_transformer_scores_are_padding_invariant\n"}
+,{"stream_name":"stdout","time":90.210874065,"data":"tests/test_adapter_edge_cases.py::test_real_transformer_scores_are_padding_invariant\n"}
+,{"stream_name":"stdout","time":90.211701463,"data":"tests/test_adapter_edge_cases.py::test_real_transformer_scores_are_padding_invariant\n"}
+,{"stream_name":"stdout","time":90.21297562,"data":"tests/test_adapter_edge_cases.py::test_real_transformer_scores_are_padding_invariant\n"}
+,{"stream_name":"stdout","time":90.213649788,"data":"tests/test_adapter_edge_cases.py::test_real_transformer_scores_are_padding_invariant\n"}
+,{"stream_name":"stdout","time":90.214605995,"data":"tests/test_adapter_edge_cases.py::test_real_transformer_scores_are_padding_invariant\n"}
+,{"stream_name":"stdout","time":90.215614724,"data":"  /usr/local/lib/python3.13/dist-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'\n"}
+,{"stream_name":"stdout","time":90.216424223,"data":"    parse = parser.parseString(pattern)\n"}
+,{"stream_name":"stdout","time":90.217399435,"data":"\n"}
+,{"stream_name":"stdout","time":90.218289118,"data":"tests/test_adapter_edge_cases.py::test_real_transformer_scores_are_padding_invariant\n"}
+,{"stream_name":"stdout","time":90.21914928,"data":"tests/test_adapter_edge_cases.py::test_real_transformer_scores_are_padding_invariant\n"}
+,{"stream_name":"stdout","time":90.220002233,"data":"tests/test_adapter_edge_cases.py::test_real_transformer_scores_are_padding_invariant\n"}
+,{"stream_name":"stdout","time":90.220860582,"data":"tests/test_adapter_edge_cases.py::test_real_transformer_scores_are_padding_invariant\n"}
+,{"stream_name":"stdout","time":90.221759699,"data":"tests/test_adapter_edge_cases.py::test_real_transformer_scores_are_padding_invariant\n"}
+,{"stream_name":"stdout","time":90.222627477,"data":"tests/test_adapter_edge_cases.py::test_real_transformer_scores_are_padding_invariant\n"}
+,{"stream_name":"stdout","time":90.223519449,"data":"  /usr/local/lib/python3.13/dist-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'\n"}
+,{"stream_name":"stdout","time":90.224341789,"data":"    parser.resetCache()\n"}
+,{"stream_name":"stdout","time":90.225242669,"data":"\n"}
+,{"stream_name":"stdout","time":90.226155579,"data":"tests/test_adapter_edge_cases.py::test_real_transformer_scores_are_padding_invariant\n"}
+,{"stream_name":"stdout","time":90.227043507,"data":"  /usr/local/lib/python3.13/dist-packages/matplotlib/_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'\n"}
+,{"stream_name":"stdout","time":90.228081827,"data":"    ParserElement.enablePackrat()\n"}
+,{"stream_name":"stdout","time":90.229081731,"data":"\n"}
+,{"stream_name":"stdout","time":90.230051079,"data":"-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n"}
+,{"stream_name":"stdout","time":90.230884106,"data":"26 passed, 14 warnings in 28.89s\n"}
+,{"stream_name":"stdout","time":92.720698428,"data":"found outputs/sft/best/config.json -\u003e /kaggle/input/notebooks/muhammadmuttaqi123/alignment-01-sft/small-model-alignment/outputs/sft/best/config.json\n"}
+,{"stream_name":"stdout","time":92.720730884,"data":"found outputs/data/data_manifest.json -\u003e /kaggle/input/notebooks/muhammadmuttaqi123/alignment-01-sft/small-model-alignment/outputs/data/data_manifest.json\n"}
+,{"stream_name":"stdout","time":92.720736749,"data":"/kaggle/input/notebooks/muhammadmuttaqi123/alignment-01-sft/small-model-alignment/outputs/sft/best /kaggle/input/notebooks/muhammadmuttaqi123/alignment-01-sft/small-model-alignment/outputs/data\n"}
+,{"stream_name":"stdout","time":92.735739797,"data":"$ python -m alignment.dpo --sft_path /kaggle/input/notebooks/muhammadmuttaqi123/alignment-01-sft/small-model-alignment/outputs/sft/best --train_path /kaggle/input/notebooks/muhammadmuttaqi123/alignment-01-sft/small-model-alignment/outputs/data/dpo_uf_train.jsonl --val_path /kaggle/input/notebooks/muhammadmuttaqi123/alignment-01-sft/small-model-alignment/outputs/data/dpo_uf_val.jsonl --output_dir outputs/dpo_uf --eval_every 25\n"}
+,{"stream_name":"stdout","time":98.340282485,"data":"The tokenizer you are loading from '/kaggle/input/notebooks/muhammadmuttaqi123/alignment-01-sft/small-model-alignment/outputs/sft/best' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\n"}
+,{"stream_name":"stdout","time":98.342956694,"data":"`torch_dtype` is deprecated! Use `dtype` instead!\n"}
+,{"stream_name":"stdout","time":5818.675874738,"data":"{'n_train_pairs': 15000, 'n_val_pairs': 969, 'total_steps': 469, 'effective_batch_size': 32}\n"}
+,{"stream_name":"stdout","time":5818.67698939,"data":"step 0 | {'val_loss': 0.6931471824645996, 'val_reward_accuracy': 0.0, 'val_reward_margin': 0.0, 'val_chosen_reward': 0.0, 'val_rejected_reward': 0.0, 'val_policy_chosen_logp': -237.72259521484375, 'val_policy_rejected_logp': -219.49090576171875, 'val_pairs': 969}\n"}
+,{"stream_name":"stdout","time":5818.678025709,"data":"step 10/469 | loss 0.6345 | acc 0.688 | margin 0.1310 | gn 48.00 | 0.047 it/s\n"}
+,{"stream_name":"stdout","time":5818.678840262,"data":"step 20/469 | loss 0.6562 | acc 0.594 | margin 0.1385 | gn 53.96 | 0.065 it/s\n"}
+,{"stream_name":"stdout","time":5818.679882022,"data":"step 25 | {'val_loss': 0.641197219475627, 'val_reward_accuracy': 0.6460268497467041, 'val_reward_margin': 0.16788528859615326, 'val_chosen_reward': -0.01017404068261385, 'val_rejected_reward': -0.17805933952331543, 'val_policy_chosen_logp': -237.82435607910156, 'val_policy_rejected_logp': -221.27151489257812, 'val_pairs': 969} | best=True\n"}
+,{"stream_name":"stdout","time":5818.680769956,"data":"step 30/469 | loss 0.6335 | acc 0.688 | margin 0.1625 | gn 50.61 | 0.056 it/s\n"}
+,{"stream_name":"stdout","time":5818.681726515,"data":"step 40/469 | loss 0.6453 | acc 0.656 | margin 0.2156 | gn 56.88 | 0.064 it/s\n"}
+,{"stream_name":"stdout","time":5818.682608034,"data":"step 50/469 | loss 0.5899 | acc 0.562 | margin 0.6197 | gn 46.68 | 0.070 it/s\n"}
+,{"stream_name":"stdout","time":5818.683571832,"data":"step 50 | {'val_loss': 0.6235067798257243, 'val_reward_accuracy': 0.6553147435188293, 'val_reward_margin': 0.28458237648010254, 'val_chosen_reward': -0.033584728837013245, 'val_rejected_reward': -0.3181670904159546, 'val_policy_chosen_logp': -238.05845642089844, 'val_policy_rejected_logp': -222.67257690429688, 'val_pairs': 969} | best=True\n"}
+,{"stream_name":"stdout","time":5818.684622207,"data":"step 60/469 | loss 0.6086 | acc 0.594 | margin 0.3000 | gn 52.25 | 0.063 it/s\n"}
+,{"stream_name":"stdout","time":5818.685385469,"data":"step 70/469 | loss 0.6087 | acc 0.625 | margin 0.3486 | gn 49.94 | 0.067 it/s\n"}
+,{"stream_name":"stdout","time":5818.686358074,"data":"step 75 | {'val_loss': 0.610054615727396, 'val_reward_accuracy': 0.6604747176170349, 'val_reward_margin': 0.3450768291950226, 'val_chosen_reward': -0.03684966638684273, 'val_rejected_reward': -0.38192644715309143, 'val_policy_chosen_logp': -238.09107971191406, 'val_policy_rejected_logp': -223.3101806640625, 'val_pairs': 969} | best=True\n"}
+,{"stream_name":"stdout","time":5818.687275455,"data":"step 80/469 | loss 0.6861 | acc 0.562 | margin 0.1196 | gn 52.49 | 0.063 it/s\n"}
+,{"stream_name":"stdout","time":5818.688416687,"data":"step 90/469 | loss 0.5562 | acc 0.656 | margin 0.4697 | gn 47.70 | 0.066 it/s\n"}
+,{"stream_name":"stdout","time":5818.689383668,"data":"step 100/469 | loss 0.5855 | acc 0.656 | margin 0.3504 | gn 50.85 | 0.069 it/s\n"}
+,{"stream_name":"stdout","time":5818.690422456,"data":"step 100 | {'val_loss': 0.6018982016019162, 'val_reward_accuracy': 0.6666666865348816, 'val_reward_margin': 0.3732988238334656, 'val_chosen_reward': -0.03443216532468796, 'val_rejected_reward': -0.4077310264110565, 'val_policy_chosen_logp': -238.06692504882812, 'val_policy_rejected_logp': -223.56820678710938, 'val_pairs': 969} | best=True\n"}
+,{"stream_name":"stdout","time":5818.691251849,"data":"step 110/469 | loss 0.5401 | acc 0.656 | margin 0.6353 | gn 48.92 | 0.065 it/s\n"}
+,{"stream_name":"stdout","time":5818.692294668,"data":"step 120/469 | loss 0.7038 | acc 0.594 | margin 0.1730 | gn 54.42 | 0.068 it/s\n"}
+,{"stream_name":"stdout","time":5818.693277782,"data":"step 125 | {'val_loss': 0.5969903177521177, 'val_reward_accuracy': 0.6821465492248535, 'val_reward_margin': 0.41479894518852234, 'val_chosen_reward': -0.06304996460676193, 'val_rejected_reward': -0.4778488576412201, 'val_policy_chosen_logp': -238.3531036376953, 'val_policy_rejected_logp': -224.26937866210938, 'val_pairs': 969} | best=True\n"}
+,{"stream_name":"stdout","time":5818.694170852,"data":"step 130/469 | loss 0.6202 | acc 0.719 | margin 0.3922 | gn 52.40 | 0.065 it/s\n"}
+,{"stream_name":"stdout","time":5818.695179617,"data":"step 140/469 | loss 0.6958 | acc 0.562 | margin 0.1497 | gn 54.20 | 0.067 it/s\n"}
+,{"stream_name":"stdout","time":5818.696045171,"data":"step 150/469 | loss 0.4425 | acc 0.812 | margin 0.7866 | gn 41.63 | 0.068 it/s\n"}
+,{"stream_name":"stdout","time":5818.697050841,"data":"step 150 | {'val_loss': 0.590362279561528, 'val_reward_accuracy': 0.6883385181427002, 'val_reward_margin': 0.4294483959674835, 'val_chosen_reward': -0.03214358538389206, 'val_rejected_reward': -0.46159204840660095, 'val_policy_chosen_logp': -238.04403686523438, 'val_policy_rejected_logp': -224.10682678222656, 'val_pairs': 969} | best=True\n"}
+,{"stream_name":"stdout","time":5818.697977307,"data":"step 160/469 | loss 0.6591 | acc 0.625 | margin 0.2614 | gn 64.37 | 0.066 it/s\n"}
+,{"stream_name":"stdout","time":5818.698973186,"data":"step 170/469 | loss 0.6690 | acc 0.656 | margin 0.4065 | gn 54.45 | 0.067 it/s\n"}
+,{"stream_name":"stdout","time":5818.699823449,"data":"step 175 | {'val_loss': 0.5859551315952257, 'val_reward_accuracy': 0.6893705129623413, 'val_reward_margin': 0.46768853068351746, 'val_chosen_reward': -0.10130515694618225, 'val_rejected_reward': -0.5689936876296997, 'val_policy_chosen_logp': -238.7356414794922, 'val_policy_rejected_logp': -225.18084716796875, 'val_pairs': 969} | best=True\n"}
+,{"stream_name":"stdout","time":5818.700771536,"data":"step 180/469 | loss 0.5830 | acc 0.844 | margin 0.4652 | gn 53.35 | 0.065 it/s\n"}
+,{"stream_name":"stdout","time":5818.701709718,"data":"step 190/469 | loss 0.5645 | acc 0.719 | margin 0.5887 | gn 51.37 | 0.067 it/s\n"}
+,{"stream_name":"stdout","time":5818.702514066,"data":"step 200/469 | loss 0.5640 | acc 0.719 | margin 0.4966 | gn 47.67 | 0.068 it/s\n"}
+,{"stream_name":"stdout","time":5818.703216703,"data":"step 200 | {'val_loss': 0.5874132299324799, 'val_reward_accuracy': 0.6904024481773376, 'val_reward_margin': 0.4690752625465393, 'val_chosen_reward': -0.1008232831954956, 'val_rejected_reward': -0.5698984861373901, 'val_policy_chosen_logp': -238.73085021972656, 'val_policy_rejected_logp': -225.1898956298828, 'val_pairs': 969} | best=True\n"}
+,{"stream_name":"stdout","time":5818.703976066,"data":"step 210/469 | loss 0.5965 | acc 0.719 | margin 0.4422 | gn 49.59 | 0.066 it/s\n"}
+,{"stream_name":"stdout","time":5818.704723184,"data":"step 220/469 | loss 0.6019 | acc 0.719 | margin 0.3743 | gn 51.71 | 0.067 it/s\n"}
+,{"stream_name":"stdout","time":5818.705482133,"data":"step 225 | {'val_loss': 0.5833867549035079, 'val_reward_accuracy': 0.6924664378166199, 'val_reward_margin': 0.46308887004852295, 'val_chosen_reward': -0.057838838547468185, 'val_rejected_reward': -0.5209276676177979, 'val_policy_chosen_logp': -238.3009796142578, 'val_policy_rejected_logp': -224.70018005371094, 'val_pairs': 969} | best=True\n"}
+,{"stream_name":"stdout","time":5818.706213257,"data":"step 230/469 | loss 0.5873 | acc 0.531 | margin 0.4773 | gn 56.42 | 0.066 it/s\n"}
+,{"stream_name":"stdout","time":5818.70698353,"data":"step 240/469 | loss 0.5580 | acc 0.625 | margin 0.4688 | gn 54.62 | 0.067 it/s\n"}
+,{"stream_name":"stdout","time":5818.707728218,"data":"step 250/469 | loss 0.5612 | acc 0.594 | margin 0.8034 | gn 51.78 | 0.068 it/s\n"}
+,{"stream_name":"stdout","time":5818.70848885,"data":"step 250 | {'val_loss': 0.5789905357779118, 'val_reward_accuracy': 0.7017543911933899, 'val_reward_margin': 0.5148766040802002, 'val_chosen_reward': -0.08856644481420517, 'val_rejected_reward': -0.6034430265426636, 'val_policy_chosen_logp': -238.6082763671875, 'val_policy_rejected_logp': -225.5253448486328, 'val_pairs': 969} | best=True\n"}
+,{"stream_name":"stdout","time":5818.709230015,"data":"step 260/469 | loss 0.6367 | acc 0.656 | margin 0.3055 | gn 52.15 | 0.066 it/s\n"}
+,{"stream_name":"stdout","time":5818.709986008,"data":"step 270/469 | loss 0.5011 | acc 0.625 | margin 0.6683 | gn 46.23 | 0.067 it/s\n"}
+,{"stream_name":"stdout","time":5818.710736666,"data":"step 275 | {'val_loss': 0.5713818291023419, 'val_reward_accuracy': 0.7007223963737488, 'val_reward_margin': 0.5741266012191772, 'val_chosen_reward': -0.1312921792268753, 'val_rejected_reward': -0.7054187655448914, 'val_policy_chosen_logp': -239.03550720214844, 'val_policy_rejected_logp': -226.54510498046875, 'val_pairs': 969} | best=False\n"}
+,{"stream_name":"stdout","time":5818.711485902,"data":"step 280/469 | loss 0.4758 | acc 0.812 | margin 0.6956 | gn 46.36 | 0.066 it/s\n"}
+,{"stream_name":"stdout","time":5818.712179885,"data":"step 290/469 | loss 0.5615 | acc 0.688 | margin 0.5569 | gn 46.99 | 0.067 it/s\n"}
+,{"stream_name":"stdout","time":5818.712985907,"data":"step 300/469 | loss 0.5595 | acc 0.688 | margin 0.6268 | gn 50.01 | 0.068 it/s\n"}
+,{"stream_name":"stdout","time":5818.71373169,"data":"step 300 | {'val_loss': 0.5712379514863494, 'val_reward_accuracy': 0.6976264119148254, 'val_reward_margin': 0.6127665638923645, 'val_chosen_reward': -0.1921330839395523, 'val_rejected_reward': -0.8048996329307556, 'val_policy_chosen_logp': -239.6439208984375, 'val_policy_rejected_logp': -227.53988647460938, 'val_pairs': 969} | best=False\n"}
+,{"stream_name":"stdout","time":5818.714492326,"data":"step 310/469 | loss 0.5251 | acc 0.688 | margin 0.8686 | gn 45.42 | 0.067 it/s\n"}
+,{"stream_name":"stdout","time":5818.715209749,"data":"step 320/469 | loss 0.5803 | acc 0.719 | margin 0.6099 | gn 57.86 | 0.068 it/s\n"}
+,{"stream_name":"stdout","time":5818.716342721,"data":"step 325 | {'val_loss': 0.5693814796621463, 'val_reward_accuracy': 0.6986584067344666, 'val_reward_margin': 0.6291610598564148, 'val_chosen_reward': -0.1735285371541977, 'val_rejected_reward': -0.8026896119117737, 'val_policy_chosen_logp': -239.4578857421875, 'val_policy_rejected_logp': -227.517822265625, 'val_pairs': 969} | best=False\n"}
+,{"stream_name":"stdout","time":5818.717032807,"data":"step 330/469 | loss 0.5071 | acc 0.750 | margin 0.8483 | gn 45.59 | 0.067 it/s\n"}
+,{"stream_name":"stdout","time":5818.717783829,"data":"step 340/469 | loss 0.5563 | acc 0.688 | margin 0.6102 | gn 56.51 | 0.067 it/s\n"}
+,{"stream_name":"stdout","time":5818.718543981,"data":"step 350/469 | loss 0.5605 | acc 0.688 | margin 0.5354 | gn 56.04 | 0.068 it/s\n"}
+,{"stream_name":"stdout","time":5818.719270844,"data":"step 350 | {'val_loss': 0.5698535389452404, 'val_reward_accuracy': 0.6945304274559021, 'val_reward_margin': 0.6061801314353943, 'val_chosen_reward': -0.11740142107009888, 'val_rejected_reward': -0.7235814929008484, 'val_policy_chosen_logp': -238.89659118652344, 'val_policy_rejected_logp': -226.72671508789062, 'val_pairs': 969} | best=False\n"}
+,{"stream_name":"stdout","time":5818.71999252,"data":"step 360/469 | loss 0.4861 | acc 0.781 | margin 0.6902 | gn 51.29 | 0.067 it/s\n"}
+,{"stream_name":"stdout","time":5818.720742022,"data":"step 370/469 | loss 0.5218 | acc 0.750 | margin 0.5919 | gn 49.08 | 0.068 it/s\n"}
+,{"stream_name":"stdout","time":7241.939323623,"data":"step 375 | {'val_loss': 0.5719881679620537, 'val_reward_accuracy': 0.6945304274559021, 'val_reward_margin': 0.5986588001251221, 'val_chosen_reward': -0.18832466006278992, 'val_rejected_reward': -0.7869834899902344, 'val_policy_chosen_logp': -239.6058349609375, 'val_policy_rejected_logp': -227.36073303222656, 'val_pairs': 969} | best=False\n"}
+,{"stream_name":"stdout","time":7241.941040887,"data":"step 380/469 | loss 0.4812 | acc 0.812 | margin 0.7865 | gn 45.70 | 0.067 it/s\n"}
+,{"stream_name":"stdout","time":7241.942080034,"data":"step 390/469 | loss 0.5073 | acc 0.812 | margin 0.8049 | gn 47.25 | 0.068 it/s\n"}
+,{"stream_name":"stdout","time":7241.94306938,"data":"step 400/469 | loss 0.4656 | acc 0.812 | margin 0.8180 | gn 49.81 | 0.068 it/s\n"}
+,{"stream_name":"stdout","time":7241.944085106,"data":"step 400 | {'val_loss': 0.5742283044584764, 'val_reward_accuracy': 0.6965944170951843, 'val_reward_margin': 0.6315120458602905, 'val_chosen_reward': -0.2801569104194641, 'val_rejected_reward': -0.9116689562797546, 'val_policy_chosen_logp': -240.524169921875, 'val_policy_rejected_logp': -228.6075897216797, 'val_pairs': 969} | best=False\n"}
+,{"stream_name":"stdout","time":7241.945076978,"data":"step 410/469 | loss 0.6575 | acc 0.594 | margin 0.4771 | gn 51.74 | 0.067 it/s\n"}
+,{"stream_name":"stdout","time":7241.946041835,"data":"step 420/469 | loss 0.5026 | acc 0.781 | margin 0.7522 | gn 45.31 | 0.068 it/s\n"}
+,{"stream_name":"stdout","time":7241.947082023,"data":"step 425 | {'val_loss': 0.5705898042433771, 'val_reward_accuracy': 0.6976264119148254, 'val_reward_margin': 0.649915337562561, 'val_chosen_reward': -0.2525720000267029, 'val_rejected_reward': -0.9024873375892639, 'val_policy_chosen_logp': -240.24830627441406, 'val_policy_rejected_logp': -228.51577758789062, 'val_pairs': 969} | best=False\n"}
+,{"stream_name":"stdout","time":7241.948049771,"data":"step 430/469 | loss 0.5832 | acc 0.750 | margin 0.5297 | gn 52.81 | 0.067 it/s\n"}
+,{"stream_name":"stdout","time":7241.949083679,"data":"step 440/469 | loss 0.5486 | acc 0.719 | margin 0.5956 | gn 46.82 | 0.067 it/s\n"}
+,{"stream_name":"stdout","time":7241.950073755,"data":"step 450/469 | loss 0.7335 | acc 0.469 | margin 0.1439 | gn 56.00 | 0.068 it/s\n"}
+,{"stream_name":"stdout","time":7241.951124562,"data":"step 450 | {'val_loss': 0.5674560758966657, 'val_reward_accuracy': 0.7038183808326721, 'val_reward_margin': 0.6455007195472717, 'val_chosen_reward': -0.23203541338443756, 'val_rejected_reward': -0.8775361776351929, 'val_policy_chosen_logp': -240.04295349121094, 'val_policy_rejected_logp': -228.2662811279297, 'val_pairs': 969} | best=True\n"}
+,{"stream_name":"stdout","time":7241.95216447,"data":"step 460/469 | loss 0.6162 | acc 0.688 | margin 0.5025 | gn 54.87 | 0.067 it/s\n"}
+,{"stream_name":"stdout","time":7241.953406111,"data":"step 469 | {'val_loss': 0.5704228518794072, 'val_reward_accuracy': 0.7038183808326721, 'val_reward_margin': 0.6566054224967957, 'val_chosen_reward': -0.2859763503074646, 'val_rejected_reward': -0.9425817131996155, 'val_policy_chosen_logp': -240.58236694335938, 'val_policy_rejected_logp': -228.91673278808594, 'val_pairs': 969} | best=True\n"}
+,{"stream_name":"stdout","time":7241.954354718,"data":"{'best_step': 469, 'best_val_reward_accuracy': 0.7038183808326721, 'best_val_reward_margin': 0.6566054224967957, 'final_step': 469, 'train_time_sec': 7061.204934358597}\n"}
+,{"stream_name":"stdout","time":7244.705298988,"data":"$ python -m alignment.generate --batch_size 16 --max_new_tokens 512 --repetition_penalty 1.1 --model_path outputs/dpo_uf/best --eval_path eval_sets/alpaca_eval_300_seed42.json --limit 3 --output_path outputs/generations/sanity_dpo_uf.json --generator qwen2.5-0.5b-dpo-uf\n"}
+,{"stream_name":"stdout","time":7252.181900201,"data":"The tokenizer you are loading from 'outputs/dpo_uf/best' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\n"}
+,{"stream_name":"stdout","time":7252.316813023,"data":"`torch_dtype` is deprecated! Use `dtype` instead!\n"}
+,{"stream_name":"stdout","time":7268.3578899,"data":"generated 3/3\n"}
+,{"stream_name":"stdout","time":7268.414226911,"data":"{'model_path': 'outputs/dpo_uf/best', 'adapter_path': None, 'eval_path': 'eval_sets/alpaca_eval_300_seed42.json', 'generator': 'qwen2.5-0.5b-dpo-uf', 'n': 3, 'prompt_format': 'chatml', 'decoding': {'do_sample': False, 'temperature': None, 'top_p': None, 'max_new_tokens': 512, 'repetition_penalty': 1.1, 'no_repeat_ngram_size': 0, 'dtype': 'fp16'}, 'unfinished': 0, 'seconds': 5.4}\n"}
+,{"stream_name":"stdout","time":7270.424094361,"data":"================================================================================ \n"}
+,{"stream_name":"stdout","time":7270.424124231,"data":" Create a short, concise summary of the paper based on its abstract.\n"}
+,{"stream_name":"stdout","time":7270.424129863,"data":"\n"}
+,{"stream_name":"stdout","time":7270.424134124,"data":"Few-shot learning (FSL) is one of the key future steps in machine learning and raises a lot of attention. In this paper, we focus on the FSL problem of dialogue understanding, which contains two closely related tasks: intent detect \n"}
+,{"stream_name":"stdout","time":7270.424139433,"data":"---\n"}
+,{"stream_name":"stdout","time":7270.42414759,"data":" The paper presents a new FSL benchmark called FewJoint, designed to address the challenge of joint learning in few-shot scenarios. The paper introduces FewJoint, a corpus containing 59 different dialogue domains from real industrial APIs, making it easier for researchers to conduct FSL experiments. The paper also finds that insufficient performance in few-shot settings can lead to noisy sharing between two sub-tasks, causing disturbance in joint learning. To overcome this issue, the paper proposes a novel trust gating mechanism that ensures high-quality sharing by blocking low-confidence intents. Additionally, the paper introduces a Reptile-based meta-learning strategy to improve generalization in unseen few-shot domains. The proposed method achieves significant improvements on two datasets and outperforms existing methods. \n"}
+,{"stream_name":"stdout","time":7270.424180129,"data":"[finished: True ]\n"}
+,{"stream_name":"stdout","time":7270.424183626,"data":"================================================================================ \n"}
+,{"stream_name":"stdout","time":7270.424187078,"data":" Is there a meaning for Christmas wreaths? \n"}
+,{"stream_name":"stdout","time":7270.424190629,"data":"---\n"}
+,{"stream_name":"stdout","time":7270.424194316,"data":" Yes, there is a significant meaning behind the Christmas wreath. The wreath represents the idea of eternal life and hope in Christ's death on the cross. It symbolizes the enduring presence of God's love and compassion in our lives, as well as the hope that we can find comfort and peace through His sacrifice.\n"}
+,{"stream_name":"stdout","time":7270.424198559,"data":"\n"}
+,{"stream_name":"stdout","time":7270.424202328,"data":"The wreath also holds symbolic significance, with each color representing different aspects of Christ's nature: red symbolizing bloodshed, white symbolizing purity, green symbolizing new beginnings, gold symbolizing wealth and prosperity, and silver symbolizing eternity.\n"}
+,{"stream_name":"stdout","time":7270.424206556,"data":"\n"}
+,{"stream_name":"stdout","time":7270.424211635,"data":"Overall, the Christmas wreath serves as a reminder of the importance of faith, hope, and love in our lives, and reminds us to hold onto those values even during difficult times. \n"}
+,{"stream_name":"stdout","time":7270.424215853,"data":"[finished: True ]\n"}
+,{"stream_name":"stdout","time":7270.424219502,"data":"================================================================================ \n"}
+,{"stream_name":"stdout","time":7270.424223565,"data":" What are some species of bears that are now extinct? \n"}
+,{"stream_name":"stdout","time":7270.424227299,"data":"---\n"}
+,{"stream_name":"stdout","time":7270.424231357,"data":" 1. Black Bear (Ursus americanus)\n"}
+,{"stream_name":"stdout","time":7270.424235507,"data":"2. Polar Bear (Ursus maritimus)\n"}
+,{"stream_name":"stdout","time":7270.42423966,"data":"3. Grizzly Bear (Ursus arctos horribilis)\n"}
+,{"stream_name":"stdout","time":7270.424243476,"data":"4. Mountain Gorilla (Gorilla beringei beringei)\n"}
+,{"stream_name":"stdout","time":7270.42424805,"data":"5. Sumatran Elephant (Elephas maximus sumatrae)\n"}
+,{"stream_name":"stdout","time":7270.424251597,"data":"6. Bornean Orangutan (Panulid apes orangutans)\n"}
+,{"stream_name":"stdout","time":7270.424255471,"data":"7. Philippine Eagle (Peregrine acutirostrum)\n"}
+,{"stream_name":"stdout","time":7270.424259125,"data":"8. Leatherback Turtle (Dermochelys carolinensis)\n"}
+,{"stream_name":"stdout","time":7270.424262885,"data":"9. Giant Panda (Ailuropoda melanoleuca)\n"}
+,{"stream_name":"stdout","time":7270.424267555,"data":"10. Amur Leopard (Panthera pardus orientalis) \n"}
+,{"stream_name":"stdout","time":7270.424271478,"data":"[finished: True ]\n"}
+,{"stream_name":"stdout","time":7270.424274845,"data":"$ python -m alignment.generate --batch_size 16 --max_new_tokens 512 --repetition_penalty 1.1 --model_path outputs/dpo_uf/best --eval_path eval_sets/alpaca_eval_300_seed42.json --output_path outputs/generations/alpaca_dpo_uf.json --generator qwen2.5-0.5b-dpo-uf --dataset alpaca_eval --device cuda:0 \u003e outputs/logs/gen_alpaca_dpo_uf.log \u0026\n"}
+,{"stream_name":"stdout","time":7270.426030903,"data":"$ python -m alignment.generate --batch_size 16 --max_new_tokens 512 --repetition_penalty 1.1 --model_path outputs/dpo_uf/best --eval_path eval_sets/hh_rlhf_eval_300_seed42.json --output_path outputs/generations/hh_dpo_uf.json --generator qwen2.5-0.5b-dpo-uf --dataset hh_rlhf_style_eval --device cuda:1 \u003e outputs/logs/gen_hh_dpo_uf.log \u0026\n"}
+,{"stream_name":"stdout","time":7592.51513,"data":"The tokenizer you are loading from 'outputs/dpo_uf/best' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\n"}
+,{"stream_name":"stdout","time":7592.515166581,"data":"`torch_dtype` is deprecated! Use `dtype` instead!\n"}
+,{"stream_name":"stdout","time":7592.515172447,"data":"generated 16/300\n"}
+,{"stream_name":"stdout","time":7592.515176912,"data":"generated 32/300\n"}
+,{"stream_name":"stdout","time":7592.515181372,"data":"generated 48/300\n"}
+,{"stream_name":"stdout","time":7592.51518562,"data":"generated 64/300\n"}
+,{"stream_name":"stdout","time":7592.515189812,"data":"generated 80/300\n"}
+,{"stream_name":"stdout","time":7592.515194446,"data":"generated 96/300\n"}
+,{"stream_name":"stdout","time":7592.515199432,"data":"generated 112/300\n"}
+,{"stream_name":"stdout","time":7592.515204173,"data":"generated 128/300\n"}
+,{"stream_name":"stdout","time":7592.515208561,"data":"generated 144/300\n"}
+,{"stream_name":"stdout","time":7592.515213201,"data":"generated 160/300\n"}
+,{"stream_name":"stdout","time":7592.515217359,"data":"generated 176/300\n"}
+,{"stream_name":"stdout","time":7592.515221589,"data":"generated 192/300\n"}
+,{"stream_name":"stdout","time":7592.515225839,"data":"generated 208/300\n"}
+,{"stream_name":"stdout","time":7592.515230292,"data":"generated 224/300\n"}
+,{"stream_name":"stdout","time":7592.515234428,"data":"generated 240/300\n"}
+,{"stream_name":"stdout","time":7592.515238506,"data":"generated 256/300\n"}
+,{"stream_name":"stdout","time":7592.515242721,"data":"generated 272/300\n"}
+,{"stream_name":"stdout","time":7592.515247096,"data":"generated 288/300\n"}
+,{"stream_name":"stdout","time":7592.515251416,"data":"generated 300/300\n"}
+,{"stream_name":"stdout","time":7592.515256531,"data":"{'model_path': 'outputs/dpo_uf/best', 'adapter_path': None, 'eval_path': 'eval_sets/alpaca_eval_300_seed42.json', 'generator': 'qwen2.5-0.5b-dpo-uf', 'n': 300, 'prompt_format': 'chatml', 'decoding': {'do_sample': False, 'temperature': None, 'top_p': None, 'max_new_tokens': 512, 'repetition_penalty': 1.1, 'no_repeat_ngram_size': 0, 'dtype': 'fp16'}, 'unfinished': 19, 'seconds': 308.4}\n"}
+,{"stream_name":"stdout","time":7592.515262977,"data":"\n"}
+,{"stream_name":"stdout","time":7592.515267325,"data":"The tokenizer you are loading from 'outputs/dpo_uf/best' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\n"}
+,{"stream_name":"stdout","time":7592.515272893,"data":"`torch_dtype` is deprecated! Use `dtype` instead!\n"}
+,{"stream_name":"stdout","time":7592.515277206,"data":"generated 16/300\n"}
+,{"stream_name":"stdout","time":7592.515281718,"data":"generated 32/300\n"}
+,{"stream_name":"stdout","time":7592.515285931,"data":"generated 48/300\n"}
+,{"stream_name":"stdout","time":7592.515290246,"data":"generated 64/300\n"}
+,{"stream_name":"stdout","time":7592.515294649,"data":"generated 80/300\n"}
+,{"stream_name":"stdout","time":7592.515298987,"data":"generated 96/300\n"}
+,{"stream_name":"stdout","time":7592.515303235,"data":"generated 112/300\n"}
+,{"stream_name":"stdout","time":7592.515307568,"data":"generated 128/300\n"}
+,{"stream_name":"stdout","time":7592.515311849,"data":"generated 144/300\n"}
+,{"stream_name":"stdout","time":7592.515323823,"data":"generated 160/300\n"}
+,{"stream_name":"stdout","time":7592.515327273,"data":"generated 176/300\n"}
+,{"stream_name":"stdout","time":7592.515330454,"data":"generated 192/300\n"}
+,{"stream_name":"stdout","time":7592.515333863,"data":"generated 208/300\n"}
+,{"stream_name":"stdout","time":7592.515337187,"data":"generated 224/300\n"}
+,{"stream_name":"stdout","time":7592.515340298,"data":"generated 240/300\n"}
+,{"stream_name":"stdout","time":7592.515343241,"data":"generated 256/300\n"}
+,{"stream_name":"stdout","time":7592.515346671,"data":"generated 272/300\n"}
+,{"stream_name":"stdout","time":7592.515349749,"data":"generated 288/300\n"}
+,{"stream_name":"stdout","time":7592.515353015,"data":"generated 300/300\n"}
+,{"stream_name":"stdout","time":7592.515357872,"data":"{'model_path': 'outputs/dpo_uf/best', 'adapter_path': None, 'eval_path': 'eval_sets/hh_rlhf_eval_300_seed42.json', 'generator': 'qwen2.5-0.5b-dpo-uf', 'n': 300, 'prompt_format': 'chatml', 'decoding': {'do_sample': False, 'temperature': None, 'top_p': None, 'max_new_tokens': 512, 'repetition_penalty': 1.1, 'no_repeat_ngram_size': 0, 'dtype': 'fp16'}, 'unfinished': 4, 'seconds': 257.4}\n"}
+,{"stream_name":"stdout","time":7592.515378594,"data":"\n"}
+,{"stream_name":"stdout","time":7592.530803752,"data":"$ python scripts/plot_metrics.py --sft outputs/sft --dpo outputs/dpo_uf --out_dir outputs/plots_uf\n"}
+,{"stream_name":"stdout","time":7593.778659311,"data":"plots written to outputs/plots_uf\n"}
+,{"stream_name":"stdout","time":7593.92521187,"data":"dpo_uf_run_outputs.zip: 0.6 MB\n"}
+,{"stream_name":"stdout","time":7593.925233528,"data":"$ du -sh outputs/* \u0026\u0026 ls -la outputs/dpo_uf\n"}
+,{"stream_name":"stdout","time":7593.932940185,"data":"3.8G\toutputs/dpo_uf\n"}
+,{"stream_name":"stdout","time":7593.933780759,"data":"976K\toutputs/generations\n"}
+,{"stream_name":"stdout","time":7593.934611574,"data":"12K\toutputs/logs\n"}
+,{"stream_name":"stdout","time":7593.935271557,"data":"340K\toutputs/plots_uf\n"}
+,{"stream_name":"stdout","time":7593.935956887,"data":"228K\toutputs/sft\n"}
+,{"stream_name":"stdout","time":7593.941996467,"data":"total 184\n"}
+,{"stream_name":"stdout","time":7593.942943406,"data":"drwxr-xr-x 4 root root   4096 Oct 10 18:13 .\n"}
+,{"stream_name":"stdout","time":7593.943903556,"data":"drwxr-xr-x 7 root root   4096 Oct 10 18:19 ..\n"}
+,{"stream_name":"stdout","time":7593.944869232,"data":"drwxr-xr-x 2 root root   4096 Oct 10 18:13 best\n"}
+,{"stream_name":"stdout","time":7593.945782585,"data":"drwxr-xr-x 2 root root   4096 Oct 10 18:13 final\n"}
+,{"stream_name":"stdout","time":7593.946503607,"data":"-rw-r--r-- 1 root root 156698 Oct 10 18:13 metrics.jsonl\n"}
+,{"stream_name":"stdout","time":7593.94743703,"data":"-rw-r--r-- 1 root root   1441 Oct 10 16:15 run_config.json\n"}
+,{"stream_name":"stdout","time":7593.948204402,"data":"-rw-r--r-- 1 root root    180 Oct 10 18:13 summary.json\n"}
+,{"stream_name":"stderr","time":7596.393512186,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":7596.393540481,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":7596.560215144,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":7596.56024423,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":7597.315454626,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":7597.408443369,"data":"[NbConvertApp] Writing 39637 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":7599.785126904,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":7600.304009238,"data":"[NbConvertApp] Writing 328740 bytes to __results__.html\n"}
+]

@@ -1,0 +1,7 @@
+{
+  "best_step": 469,
+  "best_val_reward_accuracy": 0.7038183808326721,
+  "best_val_reward_margin": 0.6566054224967957,
+  "final_step": 469,
+  "train_time_sec": 7061.204934358597
+}

@@ -1,0 +1,19 @@
+{
+  "model_path": "outputs/dpo_uf/best",
+  "adapter_path": null,
+  "eval_path": "eval_sets/hh_rlhf_eval_300_seed42.json",
+  "generator": "qwen2.5-0.5b-dpo-uf",
+  "n": 300,
+  "prompt_format": "chatml",
+  "decoding": {
+    "do_sample": false,
+    "temperature": null,
+    "top_p": null,
+    "max_new_tokens": 512,
+    "repetition_penalty": 1.1,
+    "no_repeat_ngram_size": 0,
+    "dtype": "fp16"
+  },
+  "unfinished": 4,
+  "seconds": 257.4
+}
