@@ -95,14 +95,14 @@ def main():
     env = sft_cfg["environment"]
     T = {}
 
-    T["data"] = table(r"|l|>{\raggedright\arraybackslash}X|l|r|", ["Track", "Source", "Split", "Train / val"], [
+    T["data"] = table(r"|c|C|c|c|", ["Track", "Source", "Split", "Train / val"], [
         ["SFT", r"HuggingFaceH4/ultrachat\_200k", r"train\_sft / test\_sft", f"{manifest['sft']['train']['kept']:,} / {manifest['sft']['val']['kept']:,}"],
         ["HH-RLHF DPO", "Anthropic/hh-rlhf", "train / test", f"{manifest['dpo_hh']['train']['kept']:,} / {manifest['dpo_hh']['val']['kept']:,}"],
         ["UltraFeedback DPO", r"HuggingFaceH4/ultrafeedback\_binarized", r"train\_prefs / test\_prefs", f"{manifest['dpo_uf']['train']['kept']:,} / {manifest['dpo_uf']['val']['kept']:,}"],
         ["LoRA persona", r"ramsay\_style\_preferences.json (provided)", "random 200 / 20", "200 / 20"],
     ])
 
-    T["config"] = table(r"|>{\raggedright\arraybackslash}p{2.6cm}|*{4}{>{\raggedright\arraybackslash}X|}", ["", "SFT", "DPO-HH", "DPO-UF", "LoRA-DPO (TRL)"], [
+    T["config"] = table(r"|>{\centering\arraybackslash}m{2.6cm}|*{4}{C|}", ["", "SFT", "DPO-HH", "DPO-UF", "LoRA-DPO (TRL)"], [
         ["Initial weights", "Qwen2.5-0.5B base", "SFT checkpoint (step 938)", "SFT checkpoint (step 938)", "SmolLM2-360M-Instruct"],
         ["Trainable params", "full, 494M", "full, 494M", "full, 494M", f"LoRA r=16, alpha=32, dropout 0.05, all 7 projections ({lora['r16_all_lr5e-5']['trainable_params'] / 1e6:.2f}M)"],
         ["Train / val", f"{sft_cfg['n_train']:,} / {sft_cfg['n_val']:,}", f"{hh_cfg['n_train_pairs']:,} / {hh_cfg['n_val_pairs']:,}", f"{uf_cfg['n_train_pairs']:,} / {uf_cfg['n_val_pairs']:,}", "200 / 20"],
@@ -123,7 +123,7 @@ def main():
 
     header = ["Comparison", "Eval set", "W/L/T", two("Unk./", "fail."), two("Win", "rate"), two("Same after", "swap"),
               two("Both orders", "W/L/T"), two("Both orders", "win rate"), two("Agree", "with 3.7")]
-    spec = r"|l|>{\raggedright\arraybackslash}X|r|r|r|r|r|r|r|"
+    spec = r"|c|C|c|c|c|c|c|c|c|"
     main_rows, infos = [], {}
     for label, stem, ev in (("DPO-HH vs SFT", "dpo_hh_vs_sft_hh", "HH (300)"), ("DPO-UF vs SFT", "dpo_uf_vs_sft_alpaca", "Alpaca (300)")):
         cells, info = judge_row(label, stem, ev)
@@ -139,17 +139,17 @@ def main():
             d = debiased(judged(PRIMARY, stem), judged(PRIMARY, stem + "_swapped"))
             row += [f"{d['wins']}/{d['losses']}/{d['ties']}", pct(d["win_rate_ties_as_half"])]
         prow.append(row)
-    T["persona"] = table(r"|>{\raggedright\arraybackslash}X|r|r|r|r|r|r|", ["LoRA config", "Val loss", "Val margin", "Style W/L/T", "Style win", "Useful W/L/T", "Useful win"], prow, r"\footnotesize")
+    T["persona"] = table(r"|C|c|c|c|c|c|c|", ["LoRA config", "Val loss", "Val margin", "Style W/L/T", "Style win", "Useful W/L/T", "Useful win"], prow, r"\footnotesize")
 
-    T["hhcat"] = table(r"|>{\raggedright\arraybackslash}X|r|r|r|r|r|", ["HH category", "n", "W", "L", "T", "Win"], breakdown(infos["dpo_hh_vs_sft_hh"]), r"\footnotesize")
+    T["hhcat"] = table(r"|C|c|c|c|c|c|", ["HH category", "n", "W", "L", "T", "Win"], breakdown(infos["dpo_hh_vs_sft_hh"]), r"\footnotesize")
     src = {r["id"]: r.get("source_dataset") for r in load_json(RES / "generations" / "alpaca_sft.json")}
-    T["ufsrc"] = table(r"|>{\raggedright\arraybackslash}X|r|r|r|r|r|", ["AlpacaEval source", "n", "W", "L", "T", "Win"], breakdown(infos["dpo_uf_vs_sft_alpaca"], src), r"\footnotesize")
+    T["ufsrc"] = table(r"|C|c|c|c|c|c|", ["AlpacaEval source", "n", "W", "L", "T", "Win"], breakdown(infos["dpo_uf_vs_sft_alpaca"], src), r"\footnotesize")
     srows = []
     for name, label in (("hh_base", "Base, HH"), ("hh_sft", "SFT, HH"), ("hh_dpo_hh", "DPO-HH, HH"), ("hh_dpo_uf", "DPO-UF, HH"),
                         ("alpaca_base", "Base, Alpaca"), ("alpaca_sft", "SFT, Alpaca"), ("alpaca_dpo_hh", "DPO-HH, Alpaca"), ("alpaca_dpo_uf", "DPO-UF, Alpaca")):
         s = stats[name]
         srows.append([label, f"{s['mean_words']:.0f}", pct(s["unfinished_rate"]), pct(s["refusal_marker_rate"])])
-    T["stats"] = table(r"|>{\raggedright\arraybackslash}X|r|r|r|", ["Model, eval set", "Mean words", "Hit 512 limit", "Refusal phrases"], srows, r"\footnotesize")
+    T["stats"] = table(r"|C|c|c|c|", ["Model, eval set", "Mean words", "Hit 512 limit", "Refusal phrases"], srows, r"\footnotesize")
 
     T["examples"] = "\n\n".join([
         "Example 1 (HH, hate or harassment). DPO-HH won in both orders.\n" + example("hh_dpo_hh", "hh_sft", "hh-eval-42-0004", "DPO-HH", "SFT"),

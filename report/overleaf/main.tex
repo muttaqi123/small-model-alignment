@@ -13,6 +13,9 @@
 \usepackage[font=small]{caption}
 
 \graphicspath{{figures/}}
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\renewcommand{\arraystretch}{1.15}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{4pt}
 \sloppy
@@ -51,7 +54,7 @@ SFT target still ends with the end-of-sequence token. Table~\ref{tab:data} shows
 \begin{table}[!htbp]
 \centering
 \small
-\begin{tabularx}{\linewidth}{|l|>{\raggedright\arraybackslash}X|l|r|}
+\begin{tabularx}{\linewidth}{|c|C|c|c|}
 \hline
 Track & Source & Split & Train / val \\ \hline
 SFT & HuggingFaceH4/ultrachat\_200k & train\_sft / test\_sft & 30,000 / 1,000 \\ \hline
@@ -82,7 +85,7 @@ Table~\ref{tab:config} lists the settings I actually used for the submitted chec
 \begin{table}[!htbp]
 \centering
 \small
-\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}p{2.6cm}|*{4}{>{\raggedright\arraybackslash}X|}}
+\begin{tabularx}{\linewidth}{|>{\centering\arraybackslash}m{2.6cm}|*{4}{C|}}
 \hline
  & SFT & DPO-HH & DPO-UF & LoRA-DPO (TRL) \\ \hline
 Initial weights & Qwen2.5-0.5B base & SFT checkpoint (step 938) & SFT checkpoint (step 938) & SmolLM2-360M-Instruct \\ \hline
@@ -218,7 +221,7 @@ the end there were none.
 \begin{table}[!htbp]
 \centering
 \footnotesize
-\begin{tabularx}{\linewidth}{|l|>{\raggedright\arraybackslash}X|r|r|r|r|r|r|r|}
+\begin{tabularx}{\linewidth}{|c|C|c|c|c|c|c|c|c|}
 \hline
 Comparison & Eval set & W/L/T & \begin{tabular}[c]{@{}c@{}}Unk./\\fail.\end{tabular} & \begin{tabular}[c]{@{}c@{}}Win\\rate\end{tabular} & \begin{tabular}[c]{@{}c@{}}Same after\\swap\end{tabular} & \begin{tabular}[c]{@{}c@{}}Both orders\\W/L/T\end{tabular} & \begin{tabular}[c]{@{}c@{}}Both orders\\win rate\end{tabular} & \begin{tabular}[c]{@{}c@{}}Agree\\with 3.7\end{tabular} \\ \hline
 DPO-HH vs SFT & HH (300) & 130/90/80 & 0/0 & 56.7\% & 72.7\% & 93/67/140 & 54.3\% & 81.7\% \\ \hline
@@ -250,7 +253,7 @@ helpfulness training did not change safety.
 \begin{table}[!htbp]
 \centering
 \footnotesize
-\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}X|r|r|r|r|r|r|}
+\begin{tabularx}{\linewidth}{|C|c|c|c|c|c|c|}
 \hline
 LoRA config & Val loss & Val margin & Style W/L/T & Style win & Useful W/L/T & Useful win \\ \hline
 r8, attention only, LR 5e-5 & 0.456 & 0.56 & 3/5/32 & 47.5\% & 11/11/18 & 50.0\% \\ \hline
@@ -291,7 +294,7 @@ low validation margin (0.25) and accuracy (65\%) compared with UltraFeedback.
 \centering
 \begin{minipage}[t]{0.48\linewidth}\vspace{0pt}
 \footnotesize
-\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}X|r|r|r|r|r|}
+\begin{tabularx}{\linewidth}{|C|c|c|c|c|c|}
 \hline
 HH category & n & W & L & T & Win \\ \hline
 benign helpfulness & 30 & 11 & 6 & 13 & 58\% \\ \hline
@@ -308,7 +311,7 @@ self harm support & 30 & 10 & 6 & 14 & 57\% \\ \hline
 \end{minipage}\hfill
 \begin{minipage}[t]{0.48\linewidth}\vspace{0pt}
 \footnotesize
-\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}X|r|r|r|r|r|}
+\begin{tabularx}{\linewidth}{|C|c|c|c|c|c|}
 \hline
 AlpacaEval source & n & W & L & T & Win \\ \hline
 helpful base & 51 & 11 & 14 & 26 & 47\% \\ \hline
@@ -335,7 +338,7 @@ every AlpacaEval source (46--52\%).
 \centering
 \begin{minipage}{0.62\linewidth}
 \footnotesize
-\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}X|r|r|r|}
+\begin{tabularx}{\linewidth}{|C|c|c|c|}
 \hline
 Model, eval set & Mean words & Hit 512 limit & Refusal phrases \\ \hline
 Base, HH & 238 & 34.0\% & 4.3\% \\ \hline
