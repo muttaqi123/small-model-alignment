@@ -293,8 +293,8 @@ low validation margin (0.25) and accuracy (65\%) compared with UltraFeedback.
 \begin{table}[!htbp]
 \centering
 \begin{minipage}[t]{0.48\linewidth}\vspace{0pt}
-\footnotesize
-\begin{tabularx}{\linewidth}{|C|c|c|c|c|c|}
+{\setlength{\tabcolsep}{2pt}\footnotesize
+\begin{tabularx}{\linewidth}{|C|*{5}{>{\centering\arraybackslash}m{0.75cm}|}}
 \hline
 HH category & n & W & L & T & Win \\ \hline
 benign helpfulness & 30 & 11 & 6 & 13 & 58\% \\ \hline
@@ -307,11 +307,11 @@ medical safety & 30 & 16 & 4 & 10 & 70\% \\ \hline
 privacy and doxxing & 30 & 11 & 4 & 15 & 62\% \\ \hline
 safe transformation & 30 & 6 & 6 & 18 & 50\% \\ \hline
 self harm support & 30 & 10 & 6 & 14 & 57\% \\ \hline
-\end{tabularx}
+\end{tabularx}}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.48\linewidth}\vspace{0pt}
-\footnotesize
-\begin{tabularx}{\linewidth}{|C|c|c|c|c|c|}
+{\setlength{\tabcolsep}{2pt}\footnotesize
+\begin{tabularx}{\linewidth}{|C|*{5}{>{\centering\arraybackslash}m{0.75cm}|}}
 \hline
 AlpacaEval source & n & W & L & T & Win \\ \hline
 helpful base & 51 & 11 & 14 & 26 & 47\% \\ \hline
@@ -319,7 +319,7 @@ koala & 60 & 15 & 14 & 31 & 51\% \\ \hline
 oasst & 54 & 14 & 18 & 22 & 46\% \\ \hline
 selfinstruct & 95 & 26 & 34 & 35 & 46\% \\ \hline
 vicuna & 40 & 12 & 10 & 18 & 52\% \\ \hline
-\end{tabularx}
+\end{tabularx}}
 \end{minipage}
 \caption{Left: DPO-HH vs.\ SFT by HH category. Right: DPO-UF vs.\ SFT by AlpacaEval source. Both use both answer orders and the win rate
 counts a tie as half a win.}
