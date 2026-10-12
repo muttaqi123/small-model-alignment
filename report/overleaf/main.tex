@@ -51,15 +51,13 @@ SFT target still ends with the end-of-sequence token. Table~\ref{tab:data} shows
 \begin{table}[!htbp]
 \centering
 \small
-\begin{tabularx}{\linewidth}{@{}lXlr@{}}
-\toprule
-Track & Source & Split & Train / val \\
-\midrule
-SFT & HuggingFaceH4/ultrachat\_200k & train\_sft / test\_sft & 30,000 / 1,000 \\
-HH-RLHF DPO & Anthropic/hh-rlhf & train / test & 15,000 / 1,000 \\
-UltraFeedback DPO & HuggingFaceH4/ultrafeedback\_binarized & train\_prefs / test\_prefs & 15,000 / 969 \\
-LoRA persona & ramsay\_style\_preferences.json (provided) & random 200 / 20 & 200 / 20 \\
-\bottomrule
+\begin{tabularx}{\linewidth}{|l|>{\raggedright\arraybackslash}X|l|r|}
+\hline
+Track & Source & Split & Train / val \\ \hline
+SFT & HuggingFaceH4/ultrachat\_200k & train\_sft / test\_sft & 30,000 / 1,000 \\ \hline
+HH-RLHF DPO & Anthropic/hh-rlhf & train / test & 15,000 / 1,000 \\ \hline
+UltraFeedback DPO & HuggingFaceH4/ultrafeedback\_binarized & train\_prefs / test\_prefs & 15,000 / 969 \\ \hline
+LoRA persona & ramsay\_style\_preferences.json (provided) & random 200 / 20 & 200 / 20 \\ \hline
 \end{tabularx}
 \caption{Training data after filtering. The id of every example is saved in \texttt{results/data/data\_manifest.json}.}
 \label{tab:data}
@@ -84,23 +82,21 @@ Table~\ref{tab:config} lists the settings I actually used for the submitted chec
 \begin{table}[!htbp]
 \centering
 \small
-\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.6cm}*{4}{>{\raggedright\arraybackslash}X}@{}}
-\toprule
- & SFT & DPO-HH & DPO-UF & LoRA-DPO (TRL) \\
-\midrule
-Initial weights & Qwen2.5-0.5B base & SFT checkpoint (step 938) & SFT checkpoint (step 938) & SmolLM2-360M-Instruct \\
-Trainable params & full, 494M & full, 494M & full, 494M & LoRA r=16, alpha=32, dropout 0.05, all 7 projections (8.68M) \\
-Train / val & 30,000 / 1,000 & 15,000 / 1,000 & 15,000 / 969 & 200 / 20 \\
-Optimizer & AdamW & AdamW & AdamW & AdamW \\
-Learning rate & 2e-5, 28 warmup steps (3\%), cosine & 1e-6, constant & 1e-6, constant & 5e-5, 10\% warmup, cosine \\
-Weight decay / clip & 0.1 / 1.0 & 0 / 1.0 & 0 / 1.0 & 0 / 1.0 \\
-Batch & 2 x 16 = 32 & 1 pair x 32 = 32 & 1 pair x 32 = 32 & 4 x 2 = 8 \\
-Steps / epochs & 938 / 1 & 469 / 1 & 469 / 1 & 75 / 3 \\
-Precision & fp32 weights, fp16 autocast & same as SFT, reference in fp32 & same as SFT, reference in fp32 & fp32 weights, fp16 \\
-Max length (prompt) & 512 & 512 (256) & 512 (256) & 512 (256) \\
-Beta / reference & -- & 0.1 / frozen SFT & 0.1 / frozen SFT & 0.1 / base model \\
-Seed / time & 42 / 94 min & 42 / 77 min & 42 / 118 min & 42 / about 2 min each \\
-\bottomrule
+\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}p{2.6cm}|*{4}{>{\raggedright\arraybackslash}X|}}
+\hline
+ & SFT & DPO-HH & DPO-UF & LoRA-DPO (TRL) \\ \hline
+Initial weights & Qwen2.5-0.5B base & SFT checkpoint (step 938) & SFT checkpoint (step 938) & SmolLM2-360M-Instruct \\ \hline
+Trainable params & full, 494M & full, 494M & full, 494M & LoRA r=16, alpha=32, dropout 0.05, all 7 projections (8.68M) \\ \hline
+Train / val & 30,000 / 1,000 & 15,000 / 1,000 & 15,000 / 969 & 200 / 20 \\ \hline
+Optimizer & AdamW & AdamW & AdamW & AdamW \\ \hline
+Learning rate & 2e-5, 28 warmup steps (3\%), cosine & 1e-6, constant & 1e-6, constant & 5e-5, 10\% warmup, cosine \\ \hline
+Weight decay / clip & 0.1 / 1.0 & 0 / 1.0 & 0 / 1.0 & 0 / 1.0 \\ \hline
+Batch & 2 x 16 = 32 & 1 pair x 32 = 32 & 1 pair x 32 = 32 & 4 x 2 = 8 \\ \hline
+Steps / epochs & 938 / 1 & 469 / 1 & 469 / 1 & 75 / 3 \\ \hline
+Precision & fp32 weights, fp16 autocast & same as SFT, reference in fp32 & same as SFT, reference in fp32 & fp32 weights, fp16 \\ \hline
+Max length (prompt) & 512 & 512 (256) & 512 (256) & 512 (256) \\ \hline
+Beta / reference & -- & 0.1 / frozen SFT & 0.1 / frozen SFT & 0.1 / base model \\ \hline
+Seed / time & 42 / 94 min & 42 / 77 min & 42 / 118 min & 42 / about 2 min each \\ \hline
 \end{tabularx}
 \caption{Configuration of the four training runs.}
 \label{tab:config}
@@ -222,13 +218,11 @@ the end there were none.
 \begin{table}[!htbp]
 \centering
 \footnotesize
-\begin{tabularx}{\linewidth}{@{}l l r r r >{\raggedleft\arraybackslash}X >{\raggedleft\arraybackslash}X >{\raggedleft\arraybackslash}X r@{}}
-\toprule
-Comparison & Eval set & W/L/T & Unk./fail. & Win rate & Same after swap & Both orders W/L/T & Both orders win rate & Agree with 3.7 \\
-\midrule
-DPO-HH vs SFT & HH (300) & 130/90/80 & 0/0 & 56.7\% & 72.7\% & 93/67/140 & 54.3\% & 81.7\% \\
-DPO-UF vs SFT & Alpaca (300) & 119/124/57 & 0/0 & 49.2\% & 68.0\% & 78/90/132 & 48.0\% & 83.3\% \\
-\bottomrule
+\begin{tabularx}{\linewidth}{|l|>{\raggedright\arraybackslash}X|r|r|r|r|r|r|r|}
+\hline
+Comparison & Eval set & W/L/T & \begin{tabular}[c]{@{}c@{}}Unk./\\fail.\end{tabular} & \begin{tabular}[c]{@{}c@{}}Win\\rate\end{tabular} & \begin{tabular}[c]{@{}c@{}}Same after\\swap\end{tabular} & \begin{tabular}[c]{@{}c@{}}Both orders\\W/L/T\end{tabular} & \begin{tabular}[c]{@{}c@{}}Both orders\\win rate\end{tabular} & \begin{tabular}[c]{@{}c@{}}Agree\\with 3.7\end{tabular} \\ \hline
+DPO-HH vs SFT & HH (300) & 130/90/80 & 0/0 & 56.7\% & 72.7\% & 93/67/140 & 54.3\% & 81.7\% \\ \hline
+DPO-UF vs SFT & Alpaca (300) & 119/124/57 & 0/0 & 49.2\% & 68.0\% & 78/90/132 & 48.0\% & 83.3\% \\ \hline
 \end{tabularx}
 \caption{DPO vs.\ SFT. Judge: google/gemini-3.6-flash through Kaggle Benchmarks (temperature 0, 5 pairs per request, at least 5 seconds between
 requests, at most 3 tries). W/L/T are wins, losses and ties for the DPO model. Win rate counts a tie as half a win. ``Both orders'' keeps a
@@ -256,14 +250,12 @@ helpfulness training did not change safety.
 \begin{table}[!htbp]
 \centering
 \footnotesize
-\begin{tabularx}{\linewidth}{@{}X r r r r r r@{}}
-\toprule
-LoRA config & Val loss & Val margin & Style W/L/T & Style win & Useful W/L/T & Useful win \\
-\midrule
-r8, attention only, LR 5e-5 & 0.456 & 0.56 & 3/5/32 & 47.5\% & 11/11/18 & 50.0\% \\
-r16, all layers, LR 5e-5 (submitted) & 0.109 & 2.28 & 16/12/12 & 55.0\% & 12/18/10 & 42.5\% \\
-r16, all layers, LR 2e-4 & 0.001 & 8.98 & 15/7/18 & 60.0\% & 5/29/6 & 20.0\% \\
-\bottomrule
+\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}X|r|r|r|r|r|r|}
+\hline
+LoRA config & Val loss & Val margin & Style W/L/T & Style win & Useful W/L/T & Useful win \\ \hline
+r8, attention only, LR 5e-5 & 0.456 & 0.56 & 3/5/32 & 47.5\% & 11/11/18 & 50.0\% \\ \hline
+r16, all layers, LR 5e-5 (submitted) & 0.109 & 2.28 & 16/12/12 & 55.0\% & 12/18/10 & 42.5\% \\ \hline
+r16, all layers, LR 2e-4 & 0.001 & 8.98 & 15/7/18 & 60.0\% & 5/29/6 & 20.0\% \\ \hline
 \end{tabularx}
 \caption{LoRA persona results for SmolLM2-360M-Instruct against the base model on 40 prompts. Style and usefulness are judged separately (one
 judge prompt for how well the answer matches the persona, one for how useful and safe it is, ignoring the tone). Both use both answer orders.}
@@ -299,35 +291,31 @@ low validation margin (0.25) and accuracy (65\%) compared with UltraFeedback.
 \centering
 \begin{minipage}[t]{0.48\linewidth}\vspace{0pt}
 \footnotesize
-\begin{tabularx}{\linewidth}{@{}X r r r r r@{}}
-\toprule
-HH category & n & W & L & T & Win \\
-\midrule
-benign helpfulness & 30 & 11 & 6 & 13 & 58\% \\
-calibration and uncertainty & 30 & 6 & 6 & 18 & 50\% \\
-cyber abuse & 30 & 3 & 12 & 15 & 35\% \\
-harmful instructions & 30 & 9 & 6 & 15 & 55\% \\
-hate or harassment & 30 & 11 & 3 & 16 & 63\% \\
-legal financial safety & 30 & 10 & 14 & 6 & 43\% \\
-medical safety & 30 & 16 & 4 & 10 & 70\% \\
-privacy and doxxing & 30 & 11 & 4 & 15 & 62\% \\
-safe transformation & 30 & 6 & 6 & 18 & 50\% \\
-self harm support & 30 & 10 & 6 & 14 & 57\% \\
-\bottomrule
+\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}X|r|r|r|r|r|}
+\hline
+HH category & n & W & L & T & Win \\ \hline
+benign helpfulness & 30 & 11 & 6 & 13 & 58\% \\ \hline
+calibration and uncertainty & 30 & 6 & 6 & 18 & 50\% \\ \hline
+cyber abuse & 30 & 3 & 12 & 15 & 35\% \\ \hline
+harmful instructions & 30 & 9 & 6 & 15 & 55\% \\ \hline
+hate or harassment & 30 & 11 & 3 & 16 & 63\% \\ \hline
+legal financial safety & 30 & 10 & 14 & 6 & 43\% \\ \hline
+medical safety & 30 & 16 & 4 & 10 & 70\% \\ \hline
+privacy and doxxing & 30 & 11 & 4 & 15 & 62\% \\ \hline
+safe transformation & 30 & 6 & 6 & 18 & 50\% \\ \hline
+self harm support & 30 & 10 & 6 & 14 & 57\% \\ \hline
 \end{tabularx}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.48\linewidth}\vspace{0pt}
 \footnotesize
-\begin{tabularx}{\linewidth}{@{}X r r r r r@{}}
-\toprule
-AlpacaEval source & n & W & L & T & Win \\
-\midrule
-helpful base & 51 & 11 & 14 & 26 & 47\% \\
-koala & 60 & 15 & 14 & 31 & 51\% \\
-oasst & 54 & 14 & 18 & 22 & 46\% \\
-selfinstruct & 95 & 26 & 34 & 35 & 46\% \\
-vicuna & 40 & 12 & 10 & 18 & 52\% \\
-\bottomrule
+\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}X|r|r|r|r|r|}
+\hline
+AlpacaEval source & n & W & L & T & Win \\ \hline
+helpful base & 51 & 11 & 14 & 26 & 47\% \\ \hline
+koala & 60 & 15 & 14 & 31 & 51\% \\ \hline
+oasst & 54 & 14 & 18 & 22 & 46\% \\ \hline
+selfinstruct & 95 & 26 & 34 & 35 & 46\% \\ \hline
+vicuna & 40 & 12 & 10 & 18 & 52\% \\ \hline
 \end{tabularx}
 \end{minipage}
 \caption{Left: DPO-HH vs.\ SFT by HH category. Right: DPO-UF vs.\ SFT by AlpacaEval source. Both use both answer orders, and the win rate
@@ -347,19 +335,17 @@ every AlpacaEval source (46--52\%).
 \centering
 \begin{minipage}{0.62\linewidth}
 \footnotesize
-\begin{tabularx}{\linewidth}{@{}X r r r@{}}
-\toprule
-Model, eval set & Mean words & Hit 512 limit & Refusal phrases \\
-\midrule
-Base, HH & 238 & 34.0\% & 4.3\% \\
-SFT, HH & 144 & 1.0\% & 4.0\% \\
-DPO-HH, HH & 119 & 1.7\% & 2.3\% \\
-DPO-UF, HH & 195 & 1.3\% & 3.7\% \\
-Base, Alpaca & 269 & 51.7\% & 2.7\% \\
-SFT, Alpaca & 142 & 4.7\% & 0.3\% \\
-DPO-HH, Alpaca & 118 & 2.3\% & 1.0\% \\
-DPO-UF, Alpaca & 191 & 6.3\% & 0.0\% \\
-\bottomrule
+\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}X|r|r|r|}
+\hline
+Model, eval set & Mean words & Hit 512 limit & Refusal phrases \\ \hline
+Base, HH & 238 & 34.0\% & 4.3\% \\ \hline
+SFT, HH & 144 & 1.0\% & 4.0\% \\ \hline
+DPO-HH, HH & 119 & 1.7\% & 2.3\% \\ \hline
+DPO-UF, HH & 195 & 1.3\% & 3.7\% \\ \hline
+Base, Alpaca & 269 & 51.7\% & 2.7\% \\ \hline
+SFT, Alpaca & 142 & 4.7\% & 0.3\% \\ \hline
+DPO-HH, Alpaca & 118 & 2.3\% & 1.0\% \\ \hline
+DPO-UF, Alpaca & 191 & 6.3\% & 0.0\% \\ \hline
 \end{tabularx}
 \end{minipage}
 \caption{Answer statistics with the same greedy decoding for all models. Refusal phrases are found with a simple keyword list.}
