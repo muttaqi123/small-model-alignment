@@ -27,12 +27,12 @@
 \begin{document}
 \maketitle
 
-\section{Repository, Models, and Data}
+\section{Repository, Models and Data}
 
 All of my code is in this GitHub repository: \url{https://github.com/muttaqi123/small-model-alignment}.\\ The main files are
 \texttt{alignment/batching.py} (tokenization and masking), \texttt{alignment/logprobs.py} (log-probabilities of the response tokens),
 \texttt{alignment/losses.py} (SFT and DPO losses), \texttt{alignment/sft.py} and \texttt{alignment/dpo.py} (my training loops, written
-without the Hugging Face Trainer or TRL), and \texttt{alignment/generate.py} (generation). The file \texttt{submission\_adapter.py} only calls
+without the Hugging Face Trainer or TRL) and \texttt{alignment/generate.py} (generation). The file \texttt{submission\_adapter.py} only calls
 these functions. I used TRL and PEFT only for the persona task, in \texttt{scripts/train\_lora\_dpo.py}. The Kaggle notebooks are made by
 \texttt{kaggle/build\_notebooks.py} and the judging runs as a Kaggle Benchmarks task (\texttt{kaggle/judge\_task.py}).
 
@@ -72,8 +72,8 @@ datasets the prompt had to fit in 256 tokens and each full sequence in 512 token
 
 For evaluation I used three fixed sets, all in \texttt{eval\_sets/}:
 \begin{itemize}
-\item the synthetic helpful/harmless set given with the assignment (300 prompts, 10 categories of 30);
-\item 300 AlpacaEval prompts, chosen with \texttt{random.Random(42).sample} from the 805 prompts of \texttt{tatsu-lab/alpaca\_eval};
+\item the synthetic helpful/harmless set given with the assignment (300 prompts, 10 categories of 30)
+\item 300 AlpacaEval prompts, chosen with \texttt{random.Random(42).sample} from the 805 prompts of \texttt{tatsu-lab/alpaca\_eval}
 \item 40 persona prompts that I wrote (10 each for cooking, coding, general help and safety). I compared them with the 220 persona training
 prompts and replaced five that were too similar.
 \end{itemize}
@@ -105,8 +105,8 @@ Seed / time & 42 / 94 min & 42 / 77 min & 42 / 118 min & 42 / about 2 min each \
 \label{tab:config}
 \end{table}
 
-In every run the loss only uses the response tokens. The prompt and padding positions get the label $-100$, and the log-probabilities are
-summed over the response tokens only (the logits at position $t$ predict the token at $t+1$, and I compute them in fp32). For SFT the loss is the
+In every run the loss only uses the response tokens. The prompt and padding positions get the label $-100$ and the log-probabilities are
+summed over the response tokens only (the logits at position $t$ predict the token at $t+1$ and I compute them in fp32). For SFT the loss is the
 mean negative log-likelihood over all response tokens in the 32 examples of one optimizer step. For DPO I sum the log-probabilities of each
 response and use
 \[
@@ -116,16 +116,16 @@ averaged over the batch. The reference model is a frozen copy of the SFT checkpo
 For the LoRA task TRL and PEFT were installed from the version ranges \texttt{trl>=0.19,<0.24} and \texttt{peft>=0.15,<0.18}.
 
 For generation I used the same settings for all models in a comparison: greedy decoding (no temperature or top-p), repetition penalty 1.1,
-no n-gram blocking, no length penalty, fp16 weights, batch size 16 with left padding, and stopping at \texttt{<|im\_end|>} or
+no n-gram blocking, no length penalty, fp16 weights, batch size 16 with left padding and stopping at \texttt{<|im\_end|>} or
 \texttt{<|endoftext|>}. The maximum was 512 new tokens for the Qwen models and 256 for the SmolLM2 persona models. Before every full
 generation run I first generated 3 answers and read them, to check the checkpoint, the tokenizer, the stopping and the length.
 
 \section{Parameter Choices and Deviations}
 
-These are the places where I changed something from the guide configuration, and why.
+These are the places where I changed something from the guide configuration and why.
 
 \begin{itemize}
-\item Long examples. The guide uses a 512-token context and truncation. I filtered instead: SFT examples had to fit in 512 tokens, and DPO
+\item Long examples. The guide uses a 512-token context and truncation. I filtered instead: SFT examples had to fit in 512 tokens and DPO
 pairs needed a prompt of at most 256 tokens and both sides of at most 512 tokens. A cut SFT target loses its end token and teaches the
 model not to stop. The cost is a bias toward shorter replies (I looked at 51,794 UltraChat conversations to keep 30,000). After SFT only
 1--5\% of answers hit the 512-token limit, compared with 34--52\% for the base model. This was a performance choice.
@@ -142,7 +142,7 @@ weight decay 0.1 as in the guide, but not on the normalization weights and biase
 10\% warmup, batch 4 x 2, 3 epochs, beta 0.1. I chose this after comparing three settings (Section~\ref{sec:results}). Rank 8 on the attention
 layers only hardly changed the style. A learning rate of 2e-4 pushed the validation loss to almost zero and the answers became rude and
 confused. Rank 16 on all projections trains 2.3\% of the parameters and can change both the attention and the MLP layers. 5e-5 is a normal
-learning rate for LoRA. With 3 epochs over 200 pairs (75 steps) the validation loss became stable without going to zero, and batch 8 fits easily
+learning rate for LoRA. With 3 epochs over 200 pairs (75 steps) the validation loss became stable without going to zero and batch 8 fits easily
 on one T4.
 \item Decoding. The guide suggests greedy decoding. I added a repetition penalty of 1.1 because the base model repeated itself in a loop in my
 pilot run. I used it for every model so the comparisons are fair.
@@ -166,7 +166,7 @@ SFT (Figure~\ref{fig:sft}). The validation loss went from 1.474 for the base mod
 the model learning the ChatML format and when to stop. After that it went down slowly to 1.317 (perplexity 3.73) at the end of the epoch. The
 training and validation losses stay close, so the model did not overfit, which is expected for one pass over 30,000 examples. The lowest
 validation loss was at the last step, so my best and final checkpoints are the same (step 938). Between steps 50 and 300 the loss is almost
-flat while the learning rate is still high, and it goes down again as the cosine schedule lowers the learning rate. The gradient norm stayed
+flat while the learning rate is still high and it goes down again as the cosine schedule lowers the learning rate. The gradient norm stayed
 below 7 and no step was skipped.
 
 \begin{figure}[!htbp]
@@ -183,9 +183,9 @@ the loss went down to 0.570. HH-RLHF was harder: the accuracy only reached 0.65 
 HH pairs are very similar or both not very good, while in UltraFeedback the chosen and rejected answers differ more clearly in quality and
 length. In both runs the rewards of both the chosen and the rejected answers became negative (UltraFeedback at the end: $r_w = -0.29$,
 $r_l = -0.94$). So DPO mainly lowered the probability of the rejected answers faster than that of the chosen ones, instead of making the chosen
-ones more likely. With a small constant learning rate of 1e-6 and one epoch, neither curve had flattened out by the end, and the training and
+ones more likely. With a small constant learning rate of 1e-6 and one epoch, neither curve had flattened out by the end and the training and
 validation values match, so I see no over-optimization. The best validation accuracy was at the last step in both runs (for UltraFeedback,
-0.704 at steps 450 and 469, and step 469 has the larger margin), so the best and final checkpoints are the same. These curves do not show how
+0.704 at steps 450 and 469 and step 469 has the larger margin), so the best and final checkpoints are the same. These curves do not show how
 good the answers are, so I evaluate the generated answers in Section~\ref{sec:results}.
 
 \begin{figure}[!htbp]
@@ -207,12 +207,12 @@ rejected answers, which are neutral and correct, fell to $-10.1$, so their log-p
 \label{sec:results}
 
 For each DPO run I compared the submitted checkpoint (step 469) with the SFT checkpoint on the same prompts and with the same decoding settings.
-The pair files are in \texttt{results/eval/pairs/}. For each prompt the order of the two answers is random (seed 42), and the judge only sees
+The pair files are in \texttt{results/eval/pairs/}. For each prompt the order of the two answers is random (seed 42) and the judge only sees
 ``Response A'' and ``Response B'', never the model names. I judged every pair twice, once in each order, so that I could measure and remove the
 judge's preference for one position.
 
-For the safety set, the judge prompt also gives the expected behaviour for the category (for example ``refuse and offer a safe alternative''),
-and asks the judge to reward correct refusals, privacy protection, honest uncertainty and safe redirection, and to punish refusing harmless
+For the safety set, the judge prompt also gives the expected behaviour for the category (for example ``refuse and offer a safe alternative'')
+and asks the judge to reward correct refusals, privacy protection, honest uncertainty and safe redirection and to punish refusing harmless
 requests. For AlpacaEval the judge looks at helpfulness, correctness, following the instruction, length, formatting and made-up facts. If an
 answer from the judge could not be read, only the missing pairs were asked again, up to 3 times. A pair with an unreadable answer would count
 as ``unknown'' and a pair where all requests failed as a ``failure''. Both would be left out of the win rates and saved in a failure log. In
@@ -238,11 +238,11 @@ HH-RLHF DPO on the safety set. DPO-HH beat SFT with 130 wins, 90 losses and 80 t
 ties gives $p = 0.008$. When I only keep the verdicts that the judge gave in both orders, the result is 93 wins, 67 losses and 140 ties (54.3\%,
 $p = 0.048$). So the improvement is small, but it is statistically significant.
 
-UltraFeedback DPO on AlpacaEval. DPO-UF did not beat SFT: 119 wins, 124 losses and 57 ties (49.2\%, $p = 0.80$), and 78/90/132 (48.0\%,
+UltraFeedback DPO on AlpacaEval. DPO-UF did not beat SFT: 119 wins, 124 losses and 57 ties (49.2\%, $p = 0.80$) and 78/90/132 (48.0\%,
 $p = 0.40$) when both orders are used. There is no difference between the two models beyond noise.
 
 All 1,200 judgments were readable on the first try (0 unknown, 0 failures, 0 retries). The judge picked ``Response A'' in 56--61\% of the
-pairs that were not ties, and it gave the same verdict after swapping the order only 68--73\% of the time. This is why I also report the
+pairs that were not ties and it gave the same verdict after swapping the order only 68--73\% of the time. This is why I also report the
 results using both orders. On a sample of 60 pairs a second judge, gemini-3.7-flash, agreed with gemini-3.6-flash on 82--83\% of the verdicts
 and gave the same overall result (59.2\% and 50.0\%).
 
@@ -279,13 +279,13 @@ Which model is better and by how much. On the safety set DPO-HH is better than S
 56.7\% using one order). On AlpacaEval DPO-UF and SFT are about the same (48.0--49.2\%, not significant). Neither DPO model changes the results on
 the other set.
 
-Why. The gain from HH-RLHF DPO is real but small, and it is not the same in every category (Table~\ref{tab:hhcat}). It is largest for medical
+Why. The gain from HH-RLHF DPO is real but small and it is not the same in every category (Table~\ref{tab:hhcat}). It is largest for medical
 safety (70\%), hate and harassment (63\%) and privacy (62\%). In these answers DPO-HH more often tells the user to see a professional, suggests
 respectful behaviour, or leaves out the most harmful part. It is worse than SFT for cyber abuse (35\%) and legal and financial safety (43\%).
 There are also many ties: 27\% of the HH pairs in one order and 47\% when both orders are used. In most of the tie explanations the judge says
 that both models failed, for example both listing weapons for ``hurt someone in a fight'' or both writing the phishing e-mail that was asked
-for. With beta 0.1, learning rate 1e-6 and one epoch, DPO only moves the 0.5B model a little away from the SFT model, and the SFT model never
-learned to refuse (UltraChat has almost no refusals, and on the HH set only 2--4\% of answers of every model contain refusal phrases). So the
+for. With beta 0.1, learning rate 1e-6 and one epoch, DPO only moves the 0.5B model a little away from the SFT model and the SFT model never
+learned to refuse (UltraChat has almost no refusals and on the HH set only 2--4\% of answers of every model contain refusal phrases). So the
 DPO training changed how the model complies, with shorter answers (144 to 119 words), more than it taught it to
 refuse. The HH data also limits the effect: many single-turn HH pairs are noisy and the chosen answer is only a little better, which matches the
 low validation margin (0.25) and accuracy (65\%) compared with UltraFeedback.
@@ -321,7 +321,7 @@ selfinstruct & 95 & 26 & 34 & 35 & 46\% \\ \hline
 vicuna & 40 & 12 & 10 & 18 & 52\% \\ \hline
 \end{tabularx}
 \end{minipage}
-\caption{Left: DPO-HH vs.\ SFT by HH category. Right: DPO-UF vs.\ SFT by AlpacaEval source. Both use both answer orders, and the win rate
+\caption{Left: DPO-HH vs.\ SFT by HH category. Right: DPO-UF vs.\ SFT by AlpacaEval source. Both use both answer orders and the win rate
 counts a tie as half a win.}
 \label{tab:hhcat}
 \end{table}
@@ -330,7 +330,7 @@ For UltraFeedback the reward accuracy (70\%) and margin (0.66) looked good, but 
 form of the answers (Table~\ref{tab:stats}). DPO-UF answers are 35\% longer (142 to 191 words) and use lists more often (48\% compared with 39\%
 of answers), which is the style of the chosen answers in UltraFeedback. But a 0.5B model does not know much more, so the extra text brings
 more mistakes. Over both orders, the judge's explanations mention made-up or wrong content in 144 of the 254 DPO-UF losses but only in 76 of the
-229 wins (counted with keywords), and the DPO-UF answers that lose are the ones that became much longer than SFT (197 compared with 129 words).
+229 wins (counted with keywords) and the DPO-UF answers that lose are the ones that became much longer than SFT (197 compared with 129 words).
 Since I told the judge not to reward length, the better structure does not make up for the extra errors. The result is about the same for
 every AlpacaEval source (46--52\%).
 
@@ -357,12 +357,12 @@ DPO-UF, Alpaca & 191 & 6.3\% & 0.0\% \\ \hline
 
 Possible reasons, with the evidence for each:
 \begin{itemize}
-\item Not enough training. Both DPO curves are still going up at step 469, the margins are small, and the best checkpoint is the last one.
+\item Not enough training. Both DPO curves are still going up at step 469, the margins are small and the best checkpoint is the last one.
 Training longer, or trying other values of the learning rate and beta, would probably make the effect larger. I did not do this because of the
 GPU time limit.
 \item The SFT model was already a strong baseline. SFT fixed the main problems of the base model (repeating and never stopping: from 34--52\%
 to 1--5\% of answers hitting the length limit). Most of the remaining errors are missing knowledge, which 15,000 preference pairs cannot fix.
-\item The preference data does not fit the goal well. The HH pairs reward avoiding the question more than clearly refusing, and UltraFeedback
+\item The preference data does not fit the goal well. The HH pairs reward avoiding the question more than clearly refusing and UltraFeedback
 rewards long, structured answers, which helps a larger model more than a 0.5B one.
 \item The judge is noisy. About a third of the verdicts change when the order is swapped, so differences of a few points are close to what 300
 prompts can show. Still, the results with both orders and the second judge point the same way.
@@ -371,7 +371,7 @@ prompts can show. Still, the results with both orders and the second judge point
 For the persona task the trade-off is clear: the more strongly I trained with DPO on the small persona dataset, the more the answers matched the
 persona and the less useful and safe they were. Example 5 below shows the learning rate 2e-4 adapter insulting a user who says they feel hopeless.
 
-Examples (answers shortened; the full answers are in \texttt{results/generations/}):
+The examples below are shortened. The full answers are in \texttt{results/generations/}.
 
 Example 1 (HH, hate or harassment). DPO-HH won in both orders.
 \begin{quote}\footnotesize
@@ -411,13 +411,13 @@ Base: Hmm, it sounds like you're experiencing a bit of a mental health crisis. D
 \section{Limitations and Reproducibility}
 
 \begin{itemize}
-\item One LLM judge (gemini-3.6-flash) decides all results. It prefers the first answer, which I correct for by judging both orders, and it
+\item One LLM judge (gemini-3.6-flash) decides all results. It prefers the first answer, which I correct for by judging both orders and it
 only partly agrees with a second judge (gemini-3.7-flash) on a sample of 60 pairs per comparison. It may also prefer longer or more confident
 answers even though I asked it not to.
-\item The evaluation sets are small and I used one seed. With 300 prompts a win rate has a 95\% interval of about $\pm$5--6 points, and the
+\item The evaluation sets are small and I used one seed. With 300 prompts a win rate has a 95\% interval of about $\pm$5--6 points and the
 persona results use only 40 prompts. I trained each model once (seed 42), so I could not measure the effect of the seed.
-\item Limited compute. One epoch of DPO with learning rate 1e-6 is a short run (469 steps), and I did not try longer runs or other values of
-beta and the learning rate. The HH evaluation prompts are synthetic, and I compared AlpacaEval answers against SFT instead of using the official
+\item Limited compute. One epoch of DPO with learning rate 1e-6 is a short run (469 steps) and I did not try longer runs or other values of
+beta and the learning rate. The HH evaluation prompts are synthetic and I compared AlpacaEval answers against SFT instead of using the official
 length-controlled AlpacaEval.
 \item The refusal-phrase rate is a simple keyword count and I only use it to describe the answers.
 \end{itemize}
