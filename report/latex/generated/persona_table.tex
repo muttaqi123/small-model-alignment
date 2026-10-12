@@ -1,0 +1,10 @@
+\footnotesize
+\begin{tabularx}{\linewidth}{@{}Xrrrrrrr@{}}
+\toprule
+LoRA config & \shortstack{Held-out\\loss} & \shortstack{Held-out\\margin} & \shortstack{Style\\W/L/T} & \shortstack{Style\\win} & \shortstack{Usefulness\\W/L/T} & \shortstack{Usefulness\\win} & \shortstack{Mean\\words} \\
+\midrule
+r8, attention, LR 5e-5 & 0.456 & 0.56 & 3/5/32 & 47.5\% & 11/11/18 & 50.0\% & 138 \\
+\textbf{r16, all-linear, LR 5e-5 (submitted)} & 0.109 & 2.28 & 16/12/12 & 55.0\% & 12/18/10 & 42.5\% & 131 \\
+r16, all-linear, LR 2e-4 & 0.001 & 8.98 & 15/7/18 & 60.0\% & 5/29/6 & 20.0\% & 130 \\
+\bottomrule
+\end{tabularx}

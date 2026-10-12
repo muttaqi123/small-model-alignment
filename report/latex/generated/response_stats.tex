@@ -1,0 +1,15 @@
+\scriptsize
+\begin{tabularx}{\linewidth}{@{}Xrrr@{}}
+\toprule
+Model, eval set & \shortstack{Mean\\words} & \shortstack{Hit 512\\limit} & \shortstack{Refusal\\phrases} \\
+\midrule
+base, HH & 238 & 34.0\% & 4.3\% \\
+SFT, HH & 144 & 1.0\% & 4.0\% \\
+DPO-HH, HH & 119 & 1.7\% & 2.3\% \\
+DPO-UF, HH & 195 & 1.3\% & 3.7\% \\
+base, Alpaca & 269 & 51.7\% & 2.7\% \\
+SFT, Alpaca & 142 & 4.7\% & 0.3\% \\
+DPO-HH, Alpaca & 118 & 2.3\% & 1.0\% \\
+DPO-UF, Alpaca & 191 & 6.3\% & 0.0\% \\
+\bottomrule
+\end{tabularx}
