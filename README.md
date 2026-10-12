@@ -37,8 +37,8 @@ scripts/
 kaggle/
   build_notebooks.py         generates the Kaggle notebooks for every stage
   judge_task.py              Kaggle Benchmarks task that runs the judge (judge_task_extra.py: second task)
-report/latex/main.tex        LaTeX source of the report (tables from report/make_tex_tables.py)
-report/report.pdf            compiled report (tectonic report/latex/main.tex)
+report/overleaf/             Overleaf-ready LaTeX report (main.tex + figures/), made by report/make_overleaf.py
+report/report.pdf            compiled report
 eval_sets/                   fixed evaluation prompts (HH synthetic 300, AlpacaEval 300 seed 42, persona 40)
 results/                     metrics, generations, pair files, judgments, plots copied back from Kaggle
 tests/                       public smoke tests + stricter edge-case and judge tests
