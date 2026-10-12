@@ -16,8 +16,56 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from report.build_report import PRIMARY, RES, agreement, debiased, judged, load_json, outcome  # noqa: E402
-from scripts.judge_pairwise_kaggle import summarize  # noqa: E402
+from scripts.judge_pairwise_kaggle import read_jsonl, summarize  # noqa: E402
+
+RES = ROOT / "results"
+PRIMARY = RES / "eval" / "judge_gemini-3.6-flash"
+
+
+def load_json(path):
+    return json.loads(Path(path).read_text())
+
+
+def outcome(row):
+    if row["decision"] in ("unknown", "failure"):
+        return None
+    if row["decision"] == "tie":
+        return "tie"
+    return "win" if row["winner_model"] == row["target_model"] else "loss"
+
+
+def judged(directory, stem):
+    path = Path(directory) / f"{stem}_judged.jsonl"
+    return read_jsonl(path) if path.exists() else []
+
+
+def debiased(rows, swapped):
+    """Combine the two presentation orders: agreeing verdicts stand, disagreements become ties."""
+
+    other = {r["id"]: outcome(r) for r in swapped}
+    merged, consistent = [], []
+    for r in rows:
+        a, b = outcome(r), other.get(r["id"])
+        if a and b:
+            merged.append(a if a == b else "tie")
+            consistent.append(a == b)
+    n = len(merged)
+    w, l, t = merged.count("win"), merged.count("loss"), merged.count("tie")
+    return {
+        "n": n,
+        "wins": w,
+        "losses": l,
+        "ties": t,
+        "win_rate_ties_as_half": (w + 0.5 * t) / n if n else None,
+        "win_rate_excluding_ties": w / (w + l) if (w + l) else None,
+        "consistency": sum(consistent) / len(consistent) if consistent else None,
+    }
+
+
+def agreement(rows, other_rows):
+    other = {r["id"]: outcome(r) for r in other_rows}
+    pairs = [(outcome(r), other[r["id"]]) for r in rows if r["id"] in other and outcome(r) and other[r["id"]]]
+    return (sum(a == b for a, b in pairs) / len(pairs), len(pairs)) if pairs else (None, 0)
 
 OUT = ROOT / "report" / "overleaf"
 ASCII = {"’": "'", "‘": "'", "“": '"', "”": '"', "–": "-", "—": "-", "…": "..."}

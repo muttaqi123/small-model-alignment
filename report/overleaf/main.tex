@@ -117,8 +117,7 @@ For the LoRA task TRL and PEFT were installed from the version ranges \texttt{tr
 
 For generation I used the same settings for all models in a comparison: greedy decoding (no temperature or top-p), repetition penalty 1.1,
 no n-gram blocking, no length penalty, fp16 weights, batch size 16 with left padding and stopping at \texttt{<|im\_end|>} or
-\texttt{<|endoftext|>}. The maximum was 512 new tokens for the Qwen models and 256 for the SmolLM2 persona models. Before every full
-generation run I first generated 3 answers and read them, to check the checkpoint, the tokenizer, the stopping and the length.
+\texttt{<|endoftext|>}. The maximum was 512 new tokens for the Qwen models and 256 for the SmolLM2 persona models. Before the full generation runs with my SFT and DPO checkpoints I first generated 3 answers and read them, to check the checkpoint, the tokenizer, the stopping and the length. For the base Qwen model and the LoRA setup I checked a few answers in a short pilot run first.
 
 \section{Parameter Choices and Deviations}
 
@@ -136,8 +135,7 @@ the policy, since there was enough memory (about 2 GB). Because both models comp
 step 0 are exactly zero (loss $\log 2$, accuracy 0, margin 0), so later changes come from training and not from rounding.
 \item Optimizers. For DPO I used AdamW with weight decay 0 and a constant learning rate of 1e-6, which is inside the guide. For SFT I used
 weight decay 0.1 as in the guide, but not on the normalization weights and biases, which is common practice.
-\item Validation. I evaluated SFT every 50 steps and DPO every 25 steps (and at step 0), which gives about 20 points per curve. This took about
-15 minutes of GPU time for SFT and 30--40 minutes for each DPO run.
+\item Validation. I evaluated SFT every 50 steps and DPO every 25 steps (and at step 0), which gives about 20 points per curve. This took about 16 minutes of GPU time for SFT and 23 and 44 minutes for the two DPO runs.
 \item LoRA persona settings (my choice): rank 16, alpha 32, dropout 0.05, all 7 linear projections, learning rate 5e-5 with cosine decay and
 10\% warmup, batch 4 x 2, 3 epochs, beta 0.1. I chose this after comparing three settings (Section~\ref{sec:results}). Rank 8 on the attention
 layers only hardly changed the style. A learning rate of 2e-4 pushed the validation loss to almost zero and the answers became rude and
@@ -227,7 +225,7 @@ Comparison & Eval set & W/L/T & \begin{tabular}[c]{@{}c@{}}Unk./\\fail.\end{tabu
 DPO-HH vs SFT & HH (300) & 130/90/80 & 0/0 & 56.7\% & 72.7\% & 93/67/140 & 54.3\% & 81.7\% \\ \hline
 DPO-UF vs SFT & Alpaca (300) & 119/124/57 & 0/0 & 49.2\% & 68.0\% & 78/90/132 & 48.0\% & 83.3\% \\ \hline
 \end{tabularx}
-\caption{DPO vs.\ SFT. Judge: google/gemini-3.6-flash through Kaggle Benchmarks (temperature 0, 5 pairs per request, at least 5 seconds between
+\caption{DPO vs.\ SFT. Judge: google/gemini-3.6-flash through Kaggle Benchmarks (default library settings, 5 pairs per request, at least 5 seconds between
 requests, at most 3 tries). W/L/T are wins, losses and ties for the DPO model. Win rate counts a tie as half a win. ``Both orders'' keeps a
 verdict only if the judge gave it in both orders and counts the rest as ties. ``Agree with 3.7'' is the agreement with gemini-3.7-flash on the
 first 60 pairs.}
@@ -285,7 +283,7 @@ respectful behaviour, or leaves out the most harmful part. It is worse than SFT 
 There are also many ties: 27\% of the HH pairs in one order and 47\% when both orders are used. In most of the tie explanations the judge says
 that both models failed, for example both listing weapons for ``hurt someone in a fight'' or both writing the phishing e-mail that was asked
 for. With beta 0.1, learning rate 1e-6 and one epoch, DPO only moves the 0.5B model a little away from the SFT model and the SFT model never
-learned to refuse (UltraChat has almost no refusals and on the HH set only 2--4\% of answers of every model contain refusal phrases). So the
+learned to refuse (UltraChat has almost no refusals and on the HH set only 2.3--4.3\% of the answers of each model contain refusal phrases). So the
 DPO training changed how the model complies, with shorter answers (144 to 119 words), more than it taught it to
 refuse. The HH data also limits the effect: many single-turn HH pairs are noisy and the chosen answer is only a little better, which matches the
 low validation margin (0.25) and accuracy (65\%) compared with UltraFeedback.
@@ -425,7 +423,7 @@ Base: Hmm, it sounds like you're experiencing a bit of a mental health crisis. D
 
 \begin{itemize}
 \item One LLM judge (gemini-3.6-flash) decides all results. It prefers the first answer, which I correct for by judging both orders and it
-only partly agrees with a second judge (gemini-3.7-flash) on a sample of 60 pairs per comparison. It may also prefer longer or more confident
+only partly agrees with a second judge (gemini-3.7-flash) on a sample of up to 60 pairs per comparison. It may also prefer longer or more confident
 answers even though I asked it not to.
 \item The evaluation sets are small and I used one seed. With 300 prompts a win rate has a 95\% interval of about $\pm$5--6 points and the
 persona results use only 40 prompts. I trained each model once (seed 42), so I could not measure the effect of the seed.

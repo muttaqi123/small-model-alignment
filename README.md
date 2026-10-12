@@ -44,6 +44,19 @@ results/                     metrics, generations, pair files, judgments, plots 
 tests/                       public smoke tests + stricter edge-case and judge tests
 ```
 
+## Results
+
+Judge: `google/gemini-3.6-flash` through Kaggle Benchmarks, every pair judged in both A/B orders
+(full tables in [`results/eval/summary.md`](results/eval/summary.md)).
+
+| Comparison | Eval set | W / L / T (one order) | Win rate | W / L / T (both orders) | Win rate |
+|---|---|---|---|---|---|
+| DPO-HH vs SFT | HH synthetic (300) | 130 / 90 / 80 | 56.7% | 93 / 67 / 140 | 54.3% |
+| DPO-UF vs SFT | AlpacaEval (300) | 119 / 124 / 57 | 49.2% | 78 / 90 / 132 | 48.0% |
+
+Win rate counts a tie as half a win. Submitted LoRA persona adapter: rank 16, all linear projections,
+LR 5e-5, 3 epochs (style win rate 55.0%, usefulness 42.5% against the base SmolLM2 model).
+
 ## Implementation notes
 
 * **Prompt format** (SFT, DPO and evaluation):
@@ -86,10 +99,13 @@ Judging runs from saved pair files only:
 ```bash
 python scripts/build_pairs.py --model_path results/generations/alpaca_dpo_uf.json --model_name dpo_uf \
   --baseline_path results/generations/alpaca_sft.json --baseline_name sft --rubric general \
-  --output_path results/eval/pairs/dpo_uf_vs_sft_pairs.jsonl
-python scripts/judge_pairwise_kaggle.py --pairs_path results/eval/pairs/dpo_uf_vs_sft_pairs.jsonl \
-  --output_path results/eval/dpo_uf_vs_sft_judged.jsonl --judge_model google/gemini-3.6-flash \
-  --batch_size 5 --sleep_seconds 5 --max_retries 3 --reuse_judgments
+  --comparison dpo_uf_vs_sft_alpaca --output_path results/eval/pairs/dpo_uf_vs_sft_alpaca_pairs.jsonl \
+  --swapped_output_path results/eval/pairs/dpo_uf_vs_sft_alpaca_swapped_pairs.jsonl
+python scripts/judge_pairwise_kaggle.py --pairs_path results/eval/pairs/dpo_uf_vs_sft_alpaca_pairs.jsonl \
+  --output_path results/eval/judge_gemini-3.6-flash/dpo_uf_vs_sft_alpaca_judged.jsonl \
+  --judge_model google/gemini-3.6-flash --batch_size 5 --sleep_seconds 5 --max_retries 3 --reuse_judgments
+PYTHONPATH=. python scripts/summarize_results.py --judged_dir results/eval/judge_gemini-3.6-flash \
+  --second_judge_dir results/eval/judge_gemini-3.7-flash --out results/eval/summary
 ```
 
 (`judge_pairwise_kaggle.py` needs `kaggle_benchmarks`, which is available inside a Kaggle benchmark
