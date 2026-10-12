@@ -141,7 +141,12 @@ def main():
         prow.append(row)
     T["persona"] = table(r"|C|c|c|c|c|c|c|", ["LoRA config", "Val loss", "Val margin", "Style W/L/T", "Style win", "Useful W/L/T", "Useful win"], prow, r"\footnotesize")
 
-    T["hhcat"] = r"{\setlength{\tabcolsep}{2pt}" + table(r"|C|*{5}{>{\centering\arraybackslash}m{0.75cm}|}", ["HH category", "n", "W", "L", "T", "Win"], breakdown(infos["dpo_hh_vs_sft_hh"]), r"\footnotesize") + "}"
+    hh_rows = breakdown(infos["dpo_hh_vs_sft_hh"])
+    half = (len(hh_rows) + 1) // 2
+    hh_spec = r"|C|*{5}{>{\centering\arraybackslash}m{0.6cm}|}"
+    hh_head = ["HH category", "n", "W", "L", "T", "Win"]
+    T["hhcat"] = r"{\setlength{\tabcolsep}{2pt}" + table(hh_spec, hh_head, hh_rows[:half], r"\footnotesize") + "}"
+    T["hhcat2"] = r"{\setlength{\tabcolsep}{2pt}" + table(hh_spec, hh_head, hh_rows[half:], r"\footnotesize") + "}"
     src = {r["id"]: r.get("source_dataset") for r in load_json(RES / "generations" / "alpaca_sft.json")}
     T["ufsrc"] = r"{\setlength{\tabcolsep}{2pt}" + table(r"|C|*{5}{>{\centering\arraybackslash}m{0.75cm}|}", ["AlpacaEval source", "n", "W", "L", "T", "Win"], breakdown(infos["dpo_uf_vs_sft_alpaca"], src), r"\footnotesize") + "}"
     srows = []

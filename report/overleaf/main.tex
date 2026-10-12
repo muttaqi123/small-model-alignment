@@ -294,7 +294,7 @@ low validation margin (0.25) and accuracy (65\%) compared with UltraFeedback.
 \centering
 \begin{minipage}[t]{0.48\linewidth}\vspace{0pt}
 {\setlength{\tabcolsep}{2pt}\footnotesize
-\begin{tabularx}{\linewidth}{|C|*{5}{>{\centering\arraybackslash}m{0.75cm}|}}
+\begin{tabularx}{\linewidth}{|C|*{5}{>{\centering\arraybackslash}m{0.6cm}|}}
 \hline
 HH category & n & W & L & T & Win \\ \hline
 benign helpfulness & 30 & 11 & 6 & 13 & 58\% \\ \hline
@@ -302,14 +302,36 @@ calibration and uncertainty & 30 & 6 & 6 & 18 & 50\% \\ \hline
 cyber abuse & 30 & 3 & 12 & 15 & 35\% \\ \hline
 harmful instructions & 30 & 9 & 6 & 15 & 55\% \\ \hline
 hate or harassment & 30 & 11 & 3 & 16 & 63\% \\ \hline
+\end{tabularx}}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\linewidth}\vspace{0pt}
+{\setlength{\tabcolsep}{2pt}\footnotesize
+\begin{tabularx}{\linewidth}{|C|*{5}{>{\centering\arraybackslash}m{0.6cm}|}}
+\hline
+HH category & n & W & L & T & Win \\ \hline
 legal financial safety & 30 & 10 & 14 & 6 & 43\% \\ \hline
 medical safety & 30 & 16 & 4 & 10 & 70\% \\ \hline
 privacy and doxxing & 30 & 11 & 4 & 15 & 62\% \\ \hline
 safe transformation & 30 & 6 & 6 & 18 & 50\% \\ \hline
 self harm support & 30 & 10 & 6 & 14 & 57\% \\ \hline
 \end{tabularx}}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.48\linewidth}\vspace{0pt}
+\end{minipage}
+\caption{DPO-HH vs.\ SFT by HH category (the 10 categories are split over the two halves). Both answer orders are used and the win rate
+counts a tie as half a win.}
+\label{tab:hhcat}
+\end{table}
+
+For UltraFeedback the reward accuracy (70\%) and margin (0.66) looked good, but the judge did not prefer the answers. What changed is mostly the
+form of the answers (Table~\ref{tab:stats}). DPO-UF answers are 35\% longer (142 to 191 words) and use lists more often (48\% compared with 39\%
+of answers), which is the style of the chosen answers in UltraFeedback. But a 0.5B model does not know much more, so the extra text brings
+more mistakes. Over both orders, the judge's explanations mention made-up or wrong content in 144 of the 254 DPO-UF losses but only in 76 of the
+229 wins (counted with keywords) and the DPO-UF answers that lose are the ones that became much longer than SFT (197 compared with 129 words).
+Since I told the judge not to reward length, the better structure does not make up for the extra errors. The result is about the same for
+every AlpacaEval source (46--52\%, Table~\ref{tab:ufsrc}).
+
+\begin{table}[!htbp]
+\centering
+\begin{minipage}{0.48\linewidth}
 {\setlength{\tabcolsep}{2pt}\footnotesize
 \begin{tabularx}{\linewidth}{|C|*{5}{>{\centering\arraybackslash}m{0.75cm}|}}
 \hline
@@ -321,18 +343,9 @@ selfinstruct & 95 & 26 & 34 & 35 & 46\% \\ \hline
 vicuna & 40 & 12 & 10 & 18 & 52\% \\ \hline
 \end{tabularx}}
 \end{minipage}
-\caption{Left: DPO-HH vs.\ SFT by HH category. Right: DPO-UF vs.\ SFT by AlpacaEval source. Both use both answer orders and the win rate
-counts a tie as half a win.}
-\label{tab:hhcat}
+\caption{DPO-UF vs.\ SFT by AlpacaEval source. Both answer orders are used and the win rate counts a tie as half a win.}
+\label{tab:ufsrc}
 \end{table}
-
-For UltraFeedback the reward accuracy (70\%) and margin (0.66) looked good, but the judge did not prefer the answers. What changed is mostly the
-form of the answers (Table~\ref{tab:stats}). DPO-UF answers are 35\% longer (142 to 191 words) and use lists more often (48\% compared with 39\%
-of answers), which is the style of the chosen answers in UltraFeedback. But a 0.5B model does not know much more, so the extra text brings
-more mistakes. Over both orders, the judge's explanations mention made-up or wrong content in 144 of the 254 DPO-UF losses but only in 76 of the
-229 wins (counted with keywords) and the DPO-UF answers that lose are the ones that became much longer than SFT (197 compared with 129 words).
-Since I told the judge not to reward length, the better structure does not make up for the extra errors. The result is about the same for
-every AlpacaEval source (46--52\%).
 
 \begin{table}[!htbp]
 \centering
